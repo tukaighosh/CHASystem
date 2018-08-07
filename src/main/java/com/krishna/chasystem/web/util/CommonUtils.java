@@ -6,11 +6,15 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.krishna.chasystem.web.dto.YearEntry;
 
 @Component
 public class CommonUtils {
-
+	@Autowired
+	YearEntry yearEntry;
 	
 	public static Date convertStringToSqlDate(String dateInString) throws ParseException
 	{

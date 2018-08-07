@@ -1,4 +1,6 @@
 <%@page import="java.util.List"%>
+<%@page import="java.util.Map.Entry"%>
+<%@page import="java.util.Map"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -17,11 +19,6 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="./resources/css/login.css">
 <script type="text/javascript" src="./resources/js/login.js"></script>
-<style type="text/css">
-body {
-	background-image: url("./resources/images/shipping_company-photo.jpg");
-}
-</style>
 <title>Login Page</title>
 </head>
 <body>
@@ -29,11 +26,11 @@ body {
 		<div class="panel-group">
 			<div class="panel panel-success">
 				<div class="panel-heading">
-					<h1 align="center">Login To CHASystem</h1>
+					<h1 align="center">CHASystem Private Limited</h1>
 				</div>
 				<div class="panel-body">
 
-					<form action="user" method="post">
+					<form action="authenticate" method="post">
 						<div class="form-group row">
 							<div class="col align-self-center">
 								<input type="text" name="userId" placeholder="Enter your userId"
@@ -41,15 +38,16 @@ body {
 
 							</div>
 						</div>
-
-						<div class="form-group row">
+						<div class="row">
 							<div class="col align-self-center">
+								<div class="form-group pass_show">
 
-								<!-- <div class="form-group"> -->
-								<input name="password" type="password"
+									<!-- 								<input name="password" type="password"
 									placeholder="Enter Your Password" class="form-control"
-									required="required"><span id="#password-field"
-									class="fa fa-fw fa-eye field-icon toggle-password"></span>
+									required="required"> -->
+									<input name="password" type="password" class="form-control"
+										placeholder="Enter Your Password" required="required">
+								</div>
 							</div>
 						</div>
 						<div class="form-group row">
@@ -58,12 +56,12 @@ body {
 									required="required">
 									<option value="">Select Accounting Year</option>
 									<%
-										List<String> accountingYearList = (List<String>) request
-												.getAttribute("accountingYearList");
-										for (String str : accountingYearList) {
+										Map<Integer, String> accountingYearMap = (Map<Integer, String>) request
+												.getAttribute("accountingYearMap");
+										for (Entry entry : accountingYearMap.entrySet()) {
 									%>
-									<option>
-										<%=str%>
+									<option value="<%=entry.getKey()%>">
+										<%=entry.getValue()%>
 									</option>
 									<%
 										}
@@ -77,12 +75,12 @@ body {
 								<select name="branch" class="form-control" required="required">
 									<option value="">Select Branch</option>
 									<%
-										List<String> branchList = (List<String>) request
-												.getAttribute("branchList");
-										for (String str : branchList) {
+										Map<String, String> branchMap = (Map<String, String>) request
+												.getAttribute("branchMap");
+										for (Entry entry : branchMap.entrySet()) {
 									%>
-									<option>
-										<%=str%>
+									<option value="<%=entry.getKey()%>">
+										<%=entry.getValue()%>
 									</option>
 									<%
 										}
@@ -101,44 +99,6 @@ body {
 				</div>
 			</div>
 		</div>
-
-
-
-		<!-- <form action="user" method="post">
-			<div class="form-group">
-
-				<input type="text" name="userId" placeholder="Enter your userId"
-					class="form-control">
-			</div>
-			<div class="form-group">
-				<input name="password" type="password"
-					placeholder="Enter Your Password" class="form-control">
-			</div>
-			<div class="form-group">
-				<select name="accountingYear" class="form-control">
-					<option value="">Select Accounting Year</option>
-					<option value="2015-2016">2015-2016</option>
-					<option value="2016-2017">2016-2017</option>
-					<option value="2017-2018">2017-2018</option>
-					<option value="2018-2019">2018-2019</option>
-				</select>
-			</div>
-			<div class="form-group">
-				<select name="branch" class="form-control">
-					<option value="">Select Branch</option>
-
-					<option value="001-Kolkata">001-Kolkata</option>
-					<option value="002-Mumbai">002-Mumbai</option>
-					<option value="003-Bangaluru">003-Bangaluru</option>
-					<option value="004-Chennai">004-Chennai</option>
-				</select>
-			</div>
-			<div class="form-group">
-				<input type="submit" value="Login"
-					class="form-control btn btn-primary">
-			</div>
-		</form>
- -->
 	</div>
 </body>
 </html>

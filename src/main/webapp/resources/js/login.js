@@ -1,10 +1,13 @@
-$(".toggle-password").click(function() {
+$(document).ready(function() {
+	$('.pass_show').append('<span class="ptxt">Show</span>');
+});
 
-  $(this).toggleClass("fa-eye fa-eye-slash");
-  var input = $($(this).attr("toggle"));
-  if (input.attr("type") == "password") {
-    input.attr("type", "text");
-  } else {
-    input.attr("type", "password");
-  }
+$(document).on('click', '.pass_show .ptxt', function() {
+
+	$(this).text($(this).text() == "Show" ? "Hide" : "Show");
+
+	$(this).prev().attr('type', function(index, attr) {
+		return attr == 'password' ? 'text' : 'password';
+	});
+
 });

@@ -3,12 +3,13 @@ package com.krishna.chasystem.web.model;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserModel {
+public class LoginPageModel {
 
 	private String userId;
 	private String password;
-	private String accountingYear;
+	private String accountingYearCode;
 	private String branch;
+	
 	public String getUserId() {
 		return userId;
 	}
@@ -21,11 +22,11 @@ public class UserModel {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getAccountingYear() {
-		return accountingYear;
+	public String getAccountingYearCode() {
+		return accountingYearCode;
 	}
-	public void setAccountingYear(String accountingYear) {
-		this.accountingYear = accountingYear;
+	public void setAccountingYearCode(String accountingYearCode) {
+		this.accountingYearCode = accountingYearCode;
 	}
 	public String getBranch() {
 		return branch;
@@ -35,7 +36,8 @@ public class UserModel {
 	}
 	@Override
 	public String toString() {
-		return "UserModel [userId=" + userId + ", password=" + password + ", accountingYear=" + accountingYear
-				+ ", branch=" + branch + "]";
+		return "LoginPageModel [userId=" + userId + ", password=" + password
+				+ ", accountingYearCode=" + accountingYearCode + ", branch="
+				+ branch + "]";
 	}
 }
