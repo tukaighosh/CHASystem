@@ -5,7 +5,7 @@ import java.sql.Date;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Job_Receipt {
+public class JobReceiptMaster {
 
 	private String jobNumber;
 	private Date jobDate;

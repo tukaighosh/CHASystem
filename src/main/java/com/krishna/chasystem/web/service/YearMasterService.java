@@ -8,7 +8,7 @@ import java.util.Map.Entry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.krishna.chasystem.web.dto.YearEntry;
+import com.krishna.chasystem.web.dto.YearEntryMaster;
 import com.krishna.chasystem.web.repository.YearRepository;
 
 @Service
@@ -20,8 +20,8 @@ public class YearMasterService {
 	public Map<Integer, String> getyearCodeAndDurationMap()
 	{
 		Map<Integer, String> yearCodeAndDurationMap = new HashMap<Integer, String>();
-		List<YearEntry> yearEntries = yearRepository.getAllYears();
-		for(YearEntry yearEntry : yearEntries)
+		List<YearEntryMaster> yearEntries = yearRepository.getAllYears();
+		for(YearEntryMaster yearEntry : yearEntries)
 		{
 			yearCodeAndDurationMap.put(yearEntry.getYearCode(), yearEntry.getBeginYear()+"-"+yearEntry.getEndYear());
 		}

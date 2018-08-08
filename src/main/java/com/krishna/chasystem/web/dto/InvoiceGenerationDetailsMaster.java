@@ -5,7 +5,7 @@ import java.sql.Date;
 import org.springframework.stereotype.Component;
 
 @Component
-public class InvoiceGenerationDetails {
+public class InvoiceGenerationDetailsMaster {
 
 	private String invoiceNumber;
 	private Date invoiceGenerationDate;

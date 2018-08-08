@@ -3,9 +3,11 @@ package com.krishna.chasystem.web.controller;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +17,13 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.krishna.chasystem.web.dto.Job_Master;
-import com.krishna.chasystem.web.dto.User;
+import com.krishna.chasystem.web.dto.ExpenseMaster;
+import com.krishna.chasystem.web.dto.JobMaster;
+import com.krishna.chasystem.web.dto.UserMaster;
 import com.krishna.chasystem.web.model.JobMasterEntryPageModel;
 import com.krishna.chasystem.web.model.LoginPageModel;
 import com.krishna.chasystem.web.service.BranchMasterService;
+import com.krishna.chasystem.web.service.ExpenseMasterService;
 import com.krishna.chasystem.web.service.JobMasterService;
 import com.krishna.chasystem.web.service.MasterService;
 import com.krishna.chasystem.web.service.UserMasterService;
@@ -32,7 +36,7 @@ public class CHASystemController {
 	@Autowired
 	UserMasterService userMasterService;
 	@Autowired
-	User user;
+	UserMaster user;
 	@Autowired
 	BranchMasterService branchMasterService;
 	@Autowired
@@ -44,7 +48,9 @@ public class CHASystemController {
 	@Autowired
 	JobMasterService jobMasterService;
 	@Autowired
-	Job_Master jobMaster;
+	JobMaster jobMaster;
+	@Autowired
+	ExpenseMasterService expenseMasterService;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String login(Locale locale, Model model) {
@@ -64,7 +70,8 @@ public class CHASystemController {
 	}
 	
 	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
-	public String authenticateUser(@Validated LoginPageModel loginPageModel,Locale locale, Model model) {
+	public String authenticateUser(@Validated LoginPageModel loginPageModel,Locale locale, Model model,HttpServletRequest request) {
+		HttpSession session = request.getSession();
 		logger.info("Log In Requested, locale = " + locale);
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,
@@ -75,9 +82,6 @@ public class CHASystemController {
 		model.addAttribute("serverTime", formattedDate);
 		
 		boolean isAuthenticated = false;
-		model.addAttribute("userId", loginPageModel.getUserId());
-		model.addAttribute("accountingYear", loginPageModel.getAccountingYearCode());
-		model.addAttribute("branch", loginPageModel.getBranch());
 		user.setUserId(Integer.parseInt(loginPageModel.getUserId()));
 		user.setPassword(loginPageModel.getPassword());
 		try {
@@ -89,6 +93,9 @@ public class CHASystemController {
 		if (isAuthenticated) {
 
 			try {
+				session.setAttribute("userId", loginPageModel.getUserId());
+				model.addAttribute("accountingYear", loginPageModel.getAccountingYearCode());
+				model.addAttribute("branch", loginPageModel.getBranch());
 				model.addAttribute("jobNumberPart2", jobMasterService.getNextJobNumber());
 				model.addAttribute("debtorsMapFromMasterTable",
 						masterService.getDebtorsMap());
@@ -110,6 +117,18 @@ public class CHASystemController {
 		logger.info(jobMasterEntrymodel.getBranch());
 		jobMaster.setBranchCode(jobMasterEntrymodel.getBranch());
 		jobMaster.setCity(jobMasterEntrymodel.getCityName());
+		jobMaster.setCommodity(jobMasterEntrymodel.getCommodity());
+		jobMaster.setDispatchFrom(jobMasterEntrymodel.getDispatchedFrom());
+		jobMaster.setDispatchTo(jobMasterEntrymodel.getDispatchedTo());
+		jobMaster.setImportOrExport(jobMasterEntrymodel.getImportOrExport());
+		jobMaster.setJobCompleted("N");
+		jobMaster.setPartyRefNo(jobMasterEntrymodel.getPartyRefNo());
+		jobMaster.setPort(jobMasterEntrymodel.getPortName());
+		jobMaster.setQuantity(Integer.parseInt(jobMasterEntrymodel.getCommodityQuantity()));
+		jobMaster.setUnit(jobMasterEntrymodel.getUnit());
+		jobMaster.setUserId((String) request.getSession().getAttribute("userId"));
+		jobMaster.setShipName(jobMasterEntrymodel.getShipName());
+		
 		
 		try {
 			recordsUpdated = jobMasterService.addJobMasterEntry(jobMaster);
@@ -117,6 +136,16 @@ public class CHASystemController {
 			logger.error(e.getMessage());
 			return "error";
 		}
-		return "jobMasterUpdateSuccess";
+		if(recordsUpdated > 0)
+		{
+			List<ExpenseMaster> expenseMasterList = expenseMasterService.getAllExpenseMasterRecords();
+			model.addAttribute("expenseMasterList", expenseMasterList);
+			model.addAttribute("recordsUpdated",true);
+		}
+		else
+		{
+			model.addAttribute("recordsUpdated",false);
+		}
+		return "jobMasterUpdateResult";
 	}
 }

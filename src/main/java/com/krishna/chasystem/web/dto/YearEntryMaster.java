@@ -3,7 +3,7 @@ package com.krishna.chasystem.web.dto;
 import org.springframework.stereotype.Component;
 
 @Component
-public class YearEntry {
+public class YearEntryMaster {
 
 	//primary key
 	private int yearCode;

@@ -5,13 +5,13 @@ import java.sql.Date;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Job_Master {
+public class JobMaster {
 
 	
 	private String jobNumber;
 	private String importOrExport;
 	private String branchCode;
-	private String vessel;
+	private String shipName;
 	private String dispatchFrom;
 	private String dispatchTo;
 	private String port;
@@ -70,11 +70,11 @@ public class Job_Master {
 	public void setBranchCode(String branchCode) {
 		this.branchCode = branchCode;
 	}
-	public String getVessel() {
-		return vessel;
+	public String getShipName() {
+		return shipName;
 	}
-	public void setVessel(String vessel) {
-		this.vessel = vessel;
+	public void setShipName(String shipName) {
+		this.shipName = shipName;
 	}
 	public String getDispatchFrom() {
 		return dispatchFrom;
@@ -128,7 +128,7 @@ public class Job_Master {
 	@Override
 	public String toString() {
 		return "Job_Master [jobNumber=" + jobNumber + ", importOrExport=" + importOrExport + ", branchCode="
-				+ branchCode + ", vessel=" + vessel + ", dispatchFrom=" + dispatchFrom + ", dispatchTo=" + dispatchTo
+				+ branchCode + ", shipName=" + shipName + ", dispatchFrom=" + dispatchFrom + ", dispatchTo=" + dispatchTo
 				+ ", port=" + port + ", beNo=" + beNo + ", city=" + city + ", partyRefNo=" + partyRefNo + ", commodity="
 				+ commodity + ", unit=" + unit + ", quantity=" + quantity + ", jobCreationDate=" + jobCreationDate
 				+ ", userId=" + userId + ", jobCompleted=" + jobCompleted + "]";

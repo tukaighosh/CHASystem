@@ -1,5 +1,8 @@
 package com.krishna.chasystem.web.model;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class JobMasterEntryPageModel {
 
 	private String jobNumber;
@@ -14,12 +17,21 @@ public class JobMasterEntryPageModel {
 	private String refNo;
 	private String partyRefNo;
 	private String creditDays;
-	private String commodityCount;
+	private String commodity;
+	private String commodityQuantity;
 	private String unit;
 	private String advanceAmount;
 	private String turnKey;
 	private String jobOrderNumber;
 	private String branch;
+	
+	
+	public String getJobNumber() {
+		return jobNumber;
+	}
+	public void setJobNumber(String jobNumber) {
+		this.jobNumber = jobNumber;
+	}
 	public String getPartyName() {
 		return partyName;
 	}
@@ -86,11 +98,18 @@ public class JobMasterEntryPageModel {
 	public void setCreditDays(String creditDays) {
 		this.creditDays = creditDays;
 	}
-	public String getCommodityCount() {
-		return commodityCount;
+	
+	public String getCommodity() {
+		return commodity;
 	}
-	public void setCommodityCount(String commodityCount) {
-		this.commodityCount = commodityCount;
+	public void setCommodity(String commodity) {
+		this.commodity = commodity;
+	}
+	public String getCommodityQuantity() {
+		return commodityQuantity;
+	}
+	public void setCommodityQuantity(String commodityQuantity) {
+		this.commodityQuantity = commodityQuantity;
 	}
 	public String getUnit() {
 		return unit;
@@ -124,15 +143,16 @@ public class JobMasterEntryPageModel {
 	}
 	@Override
 	public String toString() {
-		return "JobMasterEntryPageModel [partyName=" + partyName
-				+ ", importOrExport=" + importOrExport + ", dispatchedFrom="
-				+ dispatchedFrom + ", dispatchedTo=" + dispatchedTo
-				+ ", portName=" + portName + ", shipName=" + shipName
-				+ ", cityName=" + cityName + ", beNo=" + beNo + ", refNo="
-				+ refNo + ", partyRefNo=" + partyRefNo + ", creditDays="
-				+ creditDays + ", commodityCount=" + commodityCount + ", unit="
-				+ unit + ", advanceAmount=" + advanceAmount + ", turnKey="
-				+ turnKey + ", jobOrderNumber=" + jobOrderNumber + ", branch="
-				+ branch + "]";
+		return "JobMasterEntryPageModel [jobNumber=" + jobNumber
+				+ ", partyName=" + partyName + ", importOrExport="
+				+ importOrExport + ", dispatchedFrom=" + dispatchedFrom
+				+ ", dispatchedTo=" + dispatchedTo + ", portName=" + portName
+				+ ", shipName=" + shipName + ", cityName=" + cityName
+				+ ", beNo=" + beNo + ", refNo=" + refNo + ", partyRefNo="
+				+ partyRefNo + ", creditDays=" + creditDays + ", commodity="
+				+ commodity + ", commodityQuantity=" + commodityQuantity
+				+ ", unit=" + unit + ", advanceAmount=" + advanceAmount
+				+ ", turnKey=" + turnKey + ", jobOrderNumber=" + jobOrderNumber
+				+ ", branch=" + branch + "]";
 	}
 }

@@ -104,8 +104,8 @@
 								<td><input type="text" name="creditDays"></td>
 								<td><label>COMMODITY: </label></td>
 								<td><input type="text" name="commodity"></td>
-								<td><label>COMMODITY COUNT: </label></td>
-								<td><input type="text" name="commodityCount"></td>
+								<td><label>COMMODITY QUANTITY: </label></td>
+								<td><input type="text" name="commodityQuantity"></td>
 							</tr>
 
 							<tr>

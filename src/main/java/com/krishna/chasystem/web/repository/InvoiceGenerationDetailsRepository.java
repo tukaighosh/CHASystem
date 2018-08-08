@@ -9,7 +9,7 @@ import java.sql.Statement;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
-import com.krishna.chasystem.web.dto.InvoiceGenerationDetails;
+import com.krishna.chasystem.web.dto.InvoiceGenerationDetailsMaster;
 import com.krishna.chasystem.web.util.CommonUtils;
 
 @Repository
@@ -19,7 +19,7 @@ public class InvoiceGenerationDetailsRepository
 	static Logger  logger = Logger.getLogger(InvoiceGenerationDetailsRepository.class);
 	static Connection con;
 	
-	public  int addJobReceiptEntry( InvoiceGenerationDetails  invoicedetail) throws ClassNotFoundException, SQLException
+	public  int addJobReceiptEntry( InvoiceGenerationDetailsMaster  invoicedetail) throws ClassNotFoundException, SQLException
 	{
 		// write body to get connection, create prepared statement then execute update
 		

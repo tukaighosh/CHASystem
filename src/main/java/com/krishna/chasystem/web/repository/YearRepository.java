@@ -7,16 +7,16 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.krishna.chasystem.web.dto.YearEntry;
+import com.krishna.chasystem.web.dto.YearEntryMaster;
 
 @Repository
 public class YearRepository {
 
 	@Autowired
-	YearEntry yearEntry;
+	YearEntryMaster yearEntry;
 	
-	public List<YearEntry> getAllYears() {
-		List<YearEntry> listOfYearEntries = new ArrayList<YearEntry>();
+	public List<YearEntryMaster> getAllYears() {
+		List<YearEntryMaster> listOfYearEntries = new ArrayList<YearEntryMaster>();
 		return listOfYearEntries;
 	}
 

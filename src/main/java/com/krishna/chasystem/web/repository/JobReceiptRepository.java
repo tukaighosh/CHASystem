@@ -9,7 +9,7 @@ import java.sql.Statement;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
-import com.krishna.chasystem.web.dto.Job_Receipt;
+import com.krishna.chasystem.web.dto.JobReceiptMaster;
 import com.krishna.chasystem.web.util.CommonUtils;
 
 @Repository
@@ -18,7 +18,7 @@ public class JobReceiptRepository {
 	static Logger logger = Logger.getLogger(JobReceiptRepository.class);
 	static Connection con;
 
-	public  int addJobReceiptEntry(Job_Receipt jobReceipt) throws ClassNotFoundException, SQLException {
+	public  int addJobReceiptEntry(JobReceiptMaster jobReceipt) throws ClassNotFoundException, SQLException {
 		// write body to get connection, create prepared statement then execute update
 
 		int recordsAdded = 0;

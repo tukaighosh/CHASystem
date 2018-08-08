@@ -3,7 +3,7 @@ package com.krishna.chasystem.web.dto;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Company {
+public class CompanyMaster {
 
 	private String companyCode;
 	private String companyName;

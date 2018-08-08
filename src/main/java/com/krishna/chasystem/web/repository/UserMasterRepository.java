@@ -7,12 +7,12 @@ import java.sql.SQLException;
 
 import org.springframework.stereotype.Repository;
 
-import com.krishna.chasystem.web.dto.User;
+import com.krishna.chasystem.web.dto.UserMaster;
 
 @Repository
 public class UserMasterRepository {
 
-	public boolean isAuthenticatedUser(User user) throws ClassNotFoundException, SQLException
+	public boolean isAuthenticatedUser(UserMaster user) throws ClassNotFoundException, SQLException
 	{
 		boolean isAuthenticated = false;
 		/*Connection con = JdbcConnection.getConnection();

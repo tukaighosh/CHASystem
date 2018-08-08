@@ -3,7 +3,7 @@ package com.krishna.chasystem.web.dto;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Expensemaster {
+public class ExpenseMaster {
 
 	private int expenseCode;
 	private String expenseName;

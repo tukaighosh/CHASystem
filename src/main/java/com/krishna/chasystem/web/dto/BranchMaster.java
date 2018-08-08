@@ -1,6 +1,6 @@
 package com.krishna.chasystem.web.dto;
 
-public class Branch {
+public class BranchMaster {
 
 	private String branchCode;
 	private String branchName;

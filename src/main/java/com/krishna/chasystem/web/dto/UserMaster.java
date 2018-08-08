@@ -3,7 +3,7 @@ package com.krishna.chasystem.web.dto;
 import org.springframework.stereotype.Component;
 
 @Component
-public class User {
+public class UserMaster {
 
 	private int userId;
 	private String userName;
