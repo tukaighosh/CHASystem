@@ -2,6 +2,7 @@ package com.krishna.chasystem.web.model;
 
 public class JobMasterEntryPageModel {
 
+	private String jobNumber;
 	private String partyName;
 	private String importOrExport;
 	private String dispatchedFrom;

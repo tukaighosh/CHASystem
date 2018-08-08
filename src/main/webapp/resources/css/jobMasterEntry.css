@@ -1,0 +1,9 @@
+.container {
+	padding-top: 100px;
+	margin: auto;
+}
+
+body {
+	background-image:
+		url("./../../resources/images/shipping_company-photo.jpg");
+}

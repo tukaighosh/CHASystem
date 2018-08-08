@@ -19,14 +19,14 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="./resources/css/login.css">
 <script type="text/javascript" src="./resources/js/login.js"></script>
-<title>Login Page</title>
+<title>CHASystem Private Limited</title>
 </head>
 <body>
 	<div class="container">
 		<div class="panel-group">
 			<div class="panel panel-success">
 				<div class="panel-heading">
-					<h1 align="center">CHASystem Private Limited</h1>
+					<h1 align="center">Single Sign On</h1>
 				</div>
 				<div class="panel-body">
 

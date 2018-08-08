@@ -89,6 +89,7 @@ public class CHASystemController {
 		if (isAuthenticated) {
 
 			try {
+				model.addAttribute("jobNumberPart2", jobMasterService.getNextJobNumber());
 				model.addAttribute("debtorsMapFromMasterTable",
 						masterService.getDebtorsMap());
 			} catch (ClassNotFoundException | SQLException e) {
