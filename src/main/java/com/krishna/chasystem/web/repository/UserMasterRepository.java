@@ -27,7 +27,10 @@ public class UserMasterRepository {
 			isAuthenticated=true;
 		rs.close();
 */
+		if(user.getUserName().equals("admin") && user.getPassword().equals("admin"))
+		{
 		isAuthenticated = true;
+		}
 		return isAuthenticated;
 	}
 }

@@ -2,9 +2,7 @@ package com.krishna.chasystem.web.dto;
 
 import java.sql.Date;
 
-import org.springframework.stereotype.Component;
 
-@Component
 public class JobMaster {
 
 	
@@ -24,6 +22,9 @@ public class JobMaster {
 	private Date jobCreationDate;
 	private String userId;
 	private String jobCompleted;
+	private double advanceAmount;
+	private String narration;
+	private String turnKey;
 	
 	
 	
@@ -125,17 +126,35 @@ public class JobMaster {
 	public void setUnit(String unit) {
 		this.unit = unit;
 	}
+	public double getAdvanceAmount() {
+		return advanceAmount;
+	}
+	public void setAdvanceAmount(double advanceAmount) {
+		this.advanceAmount = advanceAmount;
+	}
+	public String getNarration() {
+		return narration;
+	}
+	public void setNarration(String narration) {
+		this.narration = narration;
+	}
+	public String getTurnKey() {
+		return turnKey;
+	}
+	public void setTurnKey(String turnKey) {
+		this.turnKey = turnKey;
+	}
 	@Override
 	public String toString() {
-		return "Job_Master [jobNumber=" + jobNumber + ", importOrExport=" + importOrExport + ", branchCode="
-				+ branchCode + ", shipName=" + shipName + ", dispatchFrom=" + dispatchFrom + ", dispatchTo=" + dispatchTo
-				+ ", port=" + port + ", beNo=" + beNo + ", city=" + city + ", partyRefNo=" + partyRefNo + ", commodity="
-				+ commodity + ", unit=" + unit + ", quantity=" + quantity + ", jobCreationDate=" + jobCreationDate
-				+ ", userId=" + userId + ", jobCompleted=" + jobCompleted + "]";
+		return "JobMaster [jobNumber=" + jobNumber + ", importOrExport="
+				+ importOrExport + ", branchCode=" + branchCode + ", shipName="
+				+ shipName + ", dispatchFrom=" + dispatchFrom + ", dispatchTo="
+				+ dispatchTo + ", port=" + port + ", beNo=" + beNo + ", city="
+				+ city + ", partyRefNo=" + partyRefNo + ", commodity="
+				+ commodity + ", unit=" + unit + ", quantity=" + quantity
+				+ ", jobCreationDate=" + jobCreationDate + ", userId=" + userId
+				+ ", jobCompleted=" + jobCompleted + ", advanceAmount="
+				+ advanceAmount + ", narration=" + narration + ", turnKey="
+				+ turnKey + "]";
 	}
-	
-	
-	
-	
-	
 }

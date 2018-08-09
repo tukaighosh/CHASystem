@@ -24,6 +24,7 @@ public class JobMasterEntryPageModel {
 	private String turnKey;
 	private String jobOrderNumber;
 	private String branch;
+	private String narration;
 	
 	
 	public String getJobNumber() {
@@ -141,6 +142,12 @@ public class JobMasterEntryPageModel {
 	public void setBranch(String branch) {
 		this.branch = branch;
 	}
+	public String getNarration() {
+		return narration;
+	}
+	public void setNarration(String narration) {
+		this.narration = narration;
+	}
 	@Override
 	public String toString() {
 		return "JobMasterEntryPageModel [jobNumber=" + jobNumber
@@ -153,6 +160,6 @@ public class JobMasterEntryPageModel {
 				+ commodity + ", commodityQuantity=" + commodityQuantity
 				+ ", unit=" + unit + ", advanceAmount=" + advanceAmount
 				+ ", turnKey=" + turnKey + ", jobOrderNumber=" + jobOrderNumber
-				+ ", branch=" + branch + "]";
+				+ ", branch=" + branch + ", narration=" + narration + "]";
 	}
 }

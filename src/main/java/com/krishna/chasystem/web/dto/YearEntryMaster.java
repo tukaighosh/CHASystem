@@ -1,30 +1,27 @@
 package com.krishna.chasystem.web.dto;
 
-import org.springframework.stereotype.Component;
 
-@Component
 public class YearEntryMaster {
 
-	//primary key
 	private int yearCode;
-	private String beginYear;
-	private String endYear;
+	private int beginYear;
+	private int endYear;
 	public int getYearCode() {
 		return yearCode;
 	}
 	public void setYearCode(int yearCode) {
 		this.yearCode = yearCode;
 	}
-	public String getBeginYear() {
+	public int getBeginYear() {
 		return beginYear;
 	}
-	public void setBeginYear(String beginYear) {
+	public void setBeginYear(int beginYear) {
 		this.beginYear = beginYear;
 	}
-	public String getEndYear() {
+	public int getEndYear() {
 		return endYear;
 	}
-	public void setEndYear(String endYear) {
+	public void setEndYear(int endYear) {
 		this.endYear = endYear;
 	}
 	@Override

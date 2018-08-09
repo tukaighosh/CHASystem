@@ -1,50 +1,17 @@
 package com.krishna.chasystem.web.dto;
 
-import org.springframework.stereotype.Component;
+import com.krishna.chasystem.web.constants.ScheduleEnum;
 
-@Component
+
 public class Master {
 
 	private String accountCode;
 	private String accountHead;
-	private String currentDebit;
-	private String currentCredit;
-	private String schedule;
-	private String balance;
-	private String openingBalance;
-	
-	
-	
-	public String getCurrentDebit() {
-		return currentDebit;
-	}
-	public void setCurrentDebit(String currentDebit) {
-		this.currentDebit = currentDebit;
-	}
-	public String getCurrentCredit() {
-		return currentCredit;
-	}
-	public void setCurrentCredit(String currentCredit) {
-		this.currentCredit = currentCredit;
-	}
-	public String getSchedule() {
-		return schedule;
-	}
-	public void setSchedule(String schedule) {
-		this.schedule = schedule;
-	}
-	public String getBalance() {
-		return balance;
-	}
-	public void setBalance(String balance) {
-		this.balance = balance;
-	}
-	public String getOpeningBalance() {
-		return openingBalance;
-	}
-	public void setOpeningBalance(String openingBalance) {
-		this.openingBalance = openingBalance;
-	}
+	private double currentDebit;
+	private double currentCredit;
+	private ScheduleEnum schedule;
+	private double balance;
+	private double openingBalance;
 	public String getAccountCode() {
 		return accountCode;
 	}
@@ -57,6 +24,36 @@ public class Master {
 	public void setAccountHead(String accountHead) {
 		this.accountHead = accountHead;
 	}
+	public double getCurrentDebit() {
+		return currentDebit;
+	}
+	public void setCurrentDebit(double currentDebit) {
+		this.currentDebit = currentDebit;
+	}
+	public double getCurrentCredit() {
+		return currentCredit;
+	}
+	public void setCurrentCredit(double currentCredit) {
+		this.currentCredit = currentCredit;
+	}
+	public ScheduleEnum getSchedule() {
+		return schedule;
+	}
+	public void setSchedule(ScheduleEnum schedule) {
+		this.schedule = schedule;
+	}
+	public double getBalance() {
+		return balance;
+	}
+	public void setBalance(double balance) {
+		this.balance = balance;
+	}
+	public double getOpeningBalance() {
+		return openingBalance;
+	}
+	public void setOpeningBalance(double openingBalance) {
+		this.openingBalance = openingBalance;
+	}
 	@Override
 	public String toString() {
 		return "Master [accountCode=" + accountCode + ", accountHead="
@@ -64,5 +61,5 @@ public class Master {
 				+ ", currentCredit=" + currentCredit + ", schedule=" + schedule
 				+ ", balance=" + balance + ", openingBalance=" + openingBalance
 				+ "]";
-	}
+	}	
 }

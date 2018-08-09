@@ -2,9 +2,6 @@ package com.krishna.chasystem.web.dto;
 
 import java.sql.Date;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public class InvoiceGenerationDetailsMaster {
 
 	private String invoiceNumber;

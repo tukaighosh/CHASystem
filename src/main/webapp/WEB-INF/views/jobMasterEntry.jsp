@@ -1,3 +1,5 @@
+<%@page import="com.krishna.chasystem.web.dto.UnitMaster"%>
+<%@page import="java.util.List"%>
 <%@page import="java.util.Map.Entry"%>
 <%@page import="java.util.Map"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -32,17 +34,15 @@
 				</div>
 				<div class="panel-body">
 
-					<form action="saveJobMaster" method="post">
+					<form action="addJobMaster" method="post">
 
 						<table class="table">
 							<tr>
 								<td><label>PARTY NAME: </label></td>
-								<td><select name="partyName" required="required"
-									class="dropdown">
+								<td><select name="partyName" required="required" style="width: 50px;">
 										<option value="">Select Party Name</option>
 										<%
-											Map<Integer, String> debtorsMapFromMasterTable = (Map<Integer, String>) request
-													.getAttribute("debtorsMapFromMasterTable");
+											Map<Integer, String> debtorsMapFromMasterTable = (Map<Integer, String>) session.getAttribute("debtorsMapFromMasterTable");
 											for (Entry entry : debtorsMapFromMasterTable.entrySet()) {
 										%>
 										<option value="<%=entry.getKey()%>">
@@ -60,16 +60,13 @@
 								<td><label>JOB NUMBER: </label></td>
 								<td><input type="text" id="jobNumber" name="jobNumber"
 									value="<%=(Long) request.getAttribute("jobNumberPart2")%>"
-									style="display: none"></td>
-								<td><input type="hidden"
-									value="<%=(String) request.getAttribute("branch")%>"
-									name="branch"></td>
+									style="display: none" readonly="readonly"></td>
 							</tr>
 
 							<tr>
 								<td><label>IMPORT OR EXPORT: </label></td>
 								<td><select id="importOrExport" name="importOrExport"
-									required="required" onchange="updateJobNumber()">
+									required="required" onchange="updateJobNumber()" style="width: 50px;">
 										<option value="">Select Import Or Export</option>
 										<option value="I">Import</option>
 										<option value="E">Export</option>
@@ -110,7 +107,21 @@
 
 							<tr>
 								<td><label>UNIT: </label></td>
-								<td><input type="text" name="unit"></td>
+								<td>
+								<select name="unit" required="required" style="width: 50px;">
+										<option value="">Select Unit            </option>
+										<%
+											List<UnitMaster> unitList = (List<UnitMaster>) session.getAttribute("unitList");
+											for (UnitMaster unit : unitList) {
+										%>
+										<option>
+											<%=unit.getUnitName()%>
+										</option>
+										<%
+											}
+										%>
+								</select>
+								</td>
 								<td><label>ADVANCE AMOUNT: </label></td>
 								<td><input type="text" name="advanceAmount"></td>
 								<td><label>TURNKEY: </label></td>
@@ -122,8 +133,14 @@
 								<td><input type="text" name="jobOrderNumber"></td>
 								<td><label>PLACE OF SERVICE: </label></td>
 								<td><input type="text" name="placeOfService"></td>
-								<td colspan="2"><input type="submit" value="SAVE"
-									class="btn btn-primary btn-block"></td>
+								<td colspan="2">
+								<textarea name="narration" rows="10" cols="20" placeholder="enter your narration in detail"></textarea>
+								</td>
+							</tr>
+							<tr>
+							<td colspan="6">
+							<input type="submit" value="SAVE" class="btn btn-primary btn-block">
+							</td>
 							</tr>
 
 

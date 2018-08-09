@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
@@ -19,7 +20,7 @@ public class InvoiceGenerationDetailsRepository
 	static Logger  logger = Logger.getLogger(InvoiceGenerationDetailsRepository.class);
 	static Connection con;
 	
-	public  int addJobReceiptEntry( InvoiceGenerationDetailsMaster  invoicedetail) throws ClassNotFoundException, SQLException
+	public  int addInvoiceGenerationDetails( InvoiceGenerationDetailsMaster  invoicedetail) throws ClassNotFoundException, SQLException
 	{
 		// write body to get connection, create prepared statement then execute update
 		
@@ -67,5 +68,10 @@ public class InvoiceGenerationDetailsRepository
 			nextJobNumber = rs.getLong(1);
 		}
 		return nextJobNumber;
+	}
+
+	public List<InvoiceGenerationDetailsMaster> getAllInvoiceDetailsList() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

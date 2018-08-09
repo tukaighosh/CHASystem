@@ -1,21 +1,16 @@
 package com.krishna.chasystem.web.repository;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.krishna.chasystem.web.constants.ScheduleEnum;
 import com.krishna.chasystem.web.dto.Master;
 
 @Repository
 public class MasterRepository {
-	@Autowired
-	Master master;
 
 	public List<Master> getListOfMaster() throws ClassNotFoundException, SQLException {
 		List<Master> masterList = new ArrayList<Master>();
@@ -35,9 +30,24 @@ public class MasterRepository {
 			master.setAccountHead(rs.getString(2));
 			masterList.add(master);
 		}*/
-		
+		Master master = new Master();
 		master.setAccountCode("D001");
 		master.setAccountHead("Diamond");
+		master.setBalance(1000);
+		master.setCurrentCredit(10000);
+		master.setCurrentDebit(900);
+		master.setOpeningBalance(10000);
+		master.setSchedule(ScheduleEnum.valueOf("ABC"));
+		masterList.add(master);
+		
+		master = new Master();
+		master.setAccountCode("D002");
+		master.setAccountHead("Gold");
+		master.setBalance(10000);
+		master.setCurrentCredit(90000);
+		master.setCurrentDebit(1000);
+		master.setOpeningBalance(80000);
+		master.setSchedule(ScheduleEnum.valueOf("BCD"));
 		masterList.add(master);
 		
 		return masterList;

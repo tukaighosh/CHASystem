@@ -1,20 +1,12 @@
 package com.krishna.chasystem.web.dto;
 
-import org.springframework.stereotype.Component;
 
-@Component
 public class UserMaster {
 
-	private int userId;
 	private String userName;
 	private String password;
 	private String role;
-	public int getUserId() {
-		return userId;
-	}
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
+	
 	public String getUserName() {
 		return userName;
 	}
@@ -35,8 +27,7 @@ public class UserMaster {
 	}
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", userName=" + userName + ", password=" + password + ", role=" + role + "]";
+		return "UserMaster [userName=" + userName + ", password=" + password
+				+ ", role=" + role + "]";
 	}
-	
-	
 }

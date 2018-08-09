@@ -5,16 +5,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class LoginPageModel {
 
-	private String userId;
+	private String userName;
 	private String password;
 	private String accountingYearCode;
 	private String branch;
 	
-	public String getUserId() {
-		return userId;
+	public String getUserName() {
+		return userName;
 	}
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	public String getPassword() {
 		return password;
@@ -36,7 +36,7 @@ public class LoginPageModel {
 	}
 	@Override
 	public String toString() {
-		return "LoginPageModel [userId=" + userId + ", password=" + password
+		return "LoginPageModel [userId=" + userName + ", password=" + password
 				+ ", accountingYearCode=" + accountingYearCode + ", branch="
 				+ branch + "]";
 	}

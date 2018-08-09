@@ -29,11 +29,20 @@
 					<h1 align="center">Single Sign On</h1>
 				</div>
 				<div class="panel-body">
-
+					<%
+					if(request.getAttribute("errorMessage") != null)
+					{
+					%>
+					<div class="alert alert-danger">
+						<strong><%= (String)request.getAttribute("errorMessage") %></strong>
+					</div>
+					<%
+					}
+					%>
 					<form action="authenticate" method="post">
 						<div class="form-group row">
 							<div class="col align-self-center">
-								<input type="text" name="userId" placeholder="Enter your userId"
+								<input type="text" name="userName" placeholder="enter your username"
 									class="form-control" required="required">
 
 							</div>
@@ -41,12 +50,8 @@
 						<div class="row">
 							<div class="col align-self-center">
 								<div class="form-group pass_show">
-
-									<!-- 								<input name="password" type="password"
-									placeholder="Enter Your Password" class="form-control"
-									required="required"> -->
 									<input name="password" type="password" class="form-control"
-										placeholder="Enter Your Password" required="required">
+										placeholder="enter your password" required="required">
 								</div>
 							</div>
 						</div>

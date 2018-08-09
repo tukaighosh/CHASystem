@@ -1,8 +1,7 @@
 package com.krishna.chasystem.web.dto;
 
-import org.springframework.stereotype.Component;
 
-@Component
+
 public class CompanyMaster {
 
 	private String companyCode;
