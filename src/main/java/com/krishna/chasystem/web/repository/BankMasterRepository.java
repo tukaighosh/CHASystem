@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.krishna.chasystem.web.constants.CheckPrintFormatEnum;
 import com.krishna.chasystem.web.dto.BankMaster;
 
 @Repository
@@ -18,7 +17,7 @@ public class BankMasterRepository {
 		bankMaster.setAccountCode("A-1005");
 		bankMaster.setBankCode(1001);
 		bankMaster.setBankName("SBI");
-		bankMaster.setCheckPrintFormat(CheckPrintFormatEnum.valueOf("NORMAL"));
+		bankMaster.setCheckPrintFormatId(1);
 		bankMaster.setTransactionCode("TR-1001");
 		bankMasterList.add(bankMaster);
 
@@ -26,7 +25,7 @@ public class BankMasterRepository {
 		bankMaster.setAccountCode("A-1006");
 		bankMaster.setBankCode(1002);
 		bankMaster.setBankName("HDFC");
-		bankMaster.setCheckPrintFormat(CheckPrintFormatEnum.valueOf("PORTRAIT"));
+		bankMaster.setCheckPrintFormatId(2);
 		bankMaster.setTransactionCode("TR-1002");
 		bankMasterList.add(bankMaster);
 		

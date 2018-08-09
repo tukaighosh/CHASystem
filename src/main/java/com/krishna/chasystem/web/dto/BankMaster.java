@@ -1,13 +1,11 @@
 package com.krishna.chasystem.web.dto;
 
-import com.krishna.chasystem.web.constants.CheckPrintFormatEnum;
-
 public class BankMaster {
 
 	private long bankCode;
 	private String bankName;
 	private String accountCode;
-	private CheckPrintFormatEnum checkPrintFormat;
+	private long checkPrintFormatId;
 	private String transactionCode;
 	
 	public long getBankCode() {
@@ -28,11 +26,12 @@ public class BankMaster {
 	public void setAccountCode(String accountCode) {
 		this.accountCode = accountCode;
 	}
-	public CheckPrintFormatEnum getCheckPrintFormat() {
-		return checkPrintFormat;
+	
+	public long getCheckPrintFormatId() {
+		return checkPrintFormatId;
 	}
-	public void setCheckPrintFormat(CheckPrintFormatEnum checkPrintFormat) {
-		this.checkPrintFormat = checkPrintFormat;
+	public void setCheckPrintFormatId(long checkPrintFormatId) {
+		this.checkPrintFormatId = checkPrintFormatId;
 	}
 	public String getTransactionCode() {
 		return transactionCode;
@@ -42,9 +41,7 @@ public class BankMaster {
 	}
 	@Override
 	public String toString() {
-		return "BankMaster [bankCode=" + bankCode + ", bankName=" + bankName
-				+ ", accountCode=" + accountCode + ", checkPrintFormat="
-				+ checkPrintFormat + ", transactionCode=" + transactionCode
-				+ "]";
+		return "BankMaster [bankCode=" + bankCode + ", bankName=" + bankName + ", accountCode=" + accountCode
+				+ ", checkPrintFormatId=" + checkPrintFormatId + ", transactionCode=" + transactionCode + "]";
 	}
 }

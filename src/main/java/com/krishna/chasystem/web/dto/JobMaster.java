@@ -17,7 +17,7 @@ public class JobMaster {
 	private String city;
 	private String partyRefNo;
 	private String commodity;
-	private String unit;
+	private int unitId;
 	private double quantity;
 	private Date jobCreationDate;
 	private String userId;
@@ -119,12 +119,11 @@ public class JobMaster {
 	public void setCommodity(String commodity) {
 		this.commodity = commodity;
 	}
-	
-	public String getUnit() {
-		return unit;
+	public int getUnitId() {
+		return unitId;
 	}
-	public void setUnit(String unit) {
-		this.unit = unit;
+	public void setUnitId(int unitId) {
+		this.unitId = unitId;
 	}
 	public double getAdvanceAmount() {
 		return advanceAmount;
@@ -151,7 +150,7 @@ public class JobMaster {
 				+ shipName + ", dispatchFrom=" + dispatchFrom + ", dispatchTo="
 				+ dispatchTo + ", port=" + port + ", beNo=" + beNo + ", city="
 				+ city + ", partyRefNo=" + partyRefNo + ", commodity="
-				+ commodity + ", unit=" + unit + ", quantity=" + quantity
+				+ commodity + ", unit=" + unitId + ", quantity=" + quantity
 				+ ", jobCreationDate=" + jobCreationDate + ", userId=" + userId
 				+ ", jobCompleted=" + jobCompleted + ", advanceAmount="
 				+ advanceAmount + ", narration=" + narration + ", turnKey="

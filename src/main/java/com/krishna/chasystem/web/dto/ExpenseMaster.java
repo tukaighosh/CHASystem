@@ -6,9 +6,9 @@ public class ExpenseMaster {
 	private int expenseCode;
 	private String expenseName;
 	private String accountCode;
-	private int cgst;
-	private int sgst;
-	private int igst;
+	private double cgst;
+	private double sgst;
+	private double igst;
 	private String receiptOrDetailAction;
 	
 	public int getExpenseCode() {
@@ -29,22 +29,22 @@ public class ExpenseMaster {
 	public void setAccountCode(String accountCode) {
 		this.accountCode = accountCode;
 	}
-	public int getCgst() {
+	public double getCgst() {
 		return cgst;
 	}
-	public void setCgst(int cgst) {
+	public void setCgst(double cgst) {
 		this.cgst = cgst;
 	}
-	public int getSgst() {
+	public double getSgst() {
 		return sgst;
 	}
-	public void setSgst(int sgst) {
+	public void setSgst(double sgst) {
 		this.sgst = sgst;
 	}
-	public int getIgst() {
+	public double getIgst() {
 		return igst;
 	}
-	public void setIgst(int igst) {
+	public void setIgst(double igst) {
 		this.igst = igst;
 	}
 	public String getReceiptOrDetailAction() {
@@ -55,9 +55,8 @@ public class ExpenseMaster {
 	}
 	@Override
 	public String toString() {
-		return "Expensemaster [expenseCode=" + expenseCode + ", expenseName="
-				+ expenseName + ", accountCode=" + accountCode + ", cgst="
-				+ cgst + ", sgst=" + sgst + ", igst=" + igst
-				+ ", receiptOrDetailAction=" + receiptOrDetailAction + "]";
+		return "ExpenseMaster [expenseCode=" + expenseCode + ", expenseName=" + expenseName + ", accountCode="
+				+ accountCode + ", cgst=" + cgst + ", sgst=" + sgst + ", igst=" + igst + ", receiptOrDetailAction="
+				+ receiptOrDetailAction + "]";
 	}
 }

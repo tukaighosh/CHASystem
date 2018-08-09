@@ -4,6 +4,7 @@ public class UnitMaster {
 
 	private int unitId;
 	private String unitName;
+	
 	public int getUnitId() {
 		return unitId;
 	}

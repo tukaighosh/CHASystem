@@ -1,17 +1,15 @@
 package com.krishna.chasystem.web.dto;
 
-import com.krishna.chasystem.web.constants.ScheduleEnum;
-
-
 public class Master {
 
 	private String accountCode;
 	private String accountHead;
 	private double currentDebit;
 	private double currentCredit;
-	private ScheduleEnum schedule;
+	private long scheduleCode;
 	private double balance;
 	private double openingBalance;
+	
 	public String getAccountCode() {
 		return accountCode;
 	}
@@ -36,11 +34,12 @@ public class Master {
 	public void setCurrentCredit(double currentCredit) {
 		this.currentCredit = currentCredit;
 	}
-	public ScheduleEnum getSchedule() {
-		return schedule;
+	
+	public long getScheduleCode() {
+		return scheduleCode;
 	}
-	public void setSchedule(ScheduleEnum schedule) {
-		this.schedule = schedule;
+	public void setScheduleCode(long scheduleCode) {
+		this.scheduleCode = scheduleCode;
 	}
 	public double getBalance() {
 		return balance;
@@ -56,10 +55,8 @@ public class Master {
 	}
 	@Override
 	public String toString() {
-		return "Master [accountCode=" + accountCode + ", accountHead="
-				+ accountHead + ", currentDebit=" + currentDebit
-				+ ", currentCredit=" + currentCredit + ", schedule=" + schedule
-				+ ", balance=" + balance + ", openingBalance=" + openingBalance
-				+ "]";
-	}	
+		return "Master [accountCode=" + accountCode + ", accountHead=" + accountHead + ", currentDebit=" + currentDebit
+				+ ", currentCredit=" + currentCredit + ", scheduleCode=" + scheduleCode + ", balance=" + balance
+				+ ", openingBalance=" + openingBalance + "]";
+	}
 }

@@ -10,12 +10,6 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.oracle</groupId>
-			<artifactId>ojdbc6</artifactId>
-			<version>11.2.0.2.0</version>
-		</dependency>
-
-		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 			<version>4.3.9.RELEASE</version>
@@ -161,4 +155,11 @@
 			</plugins>
 		</pluginManagement>
 	</build>
+	
+	<repositories>
+	<repository>
+      <id>maven2</id>
+      <url>http://central.maven.org/maven2/</url>
+	</repository>
+	</repositories>
 </project>

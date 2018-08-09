@@ -4,15 +4,15 @@ package com.krishna.chasystem.web.dto;
 
 public class CompanyMaster {
 
-	private String companyCode;
+	private int companyCode;
 	private String companyName;
 	private int yearCode;
 	
 	
-	public String getCompanyCode() {
+	public int getCompanyCode() {
 		return companyCode;
 	}
-	public void setCompanyCode(String companyCode) {
+	public void setCompanyCode(int companyCode) {
 		this.companyCode = companyCode;
 	}
 	public String getCompanyName() {

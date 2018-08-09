@@ -135,7 +135,7 @@ public class CHASystemController {
 		jobMaster.setPort(jobMasterEntrymodel.getPortName());
 		jobMaster.setQuantity(Double.parseDouble(jobMasterEntrymodel
 				.getCommodityQuantity()));
-		jobMaster.setUnit(jobMasterEntrymodel.getUnit());
+		//jobMaster.setUnit(jobMasterEntrymodel.getUnit());
 		jobMaster.setUserId((String) request.getSession()
 				.getAttribute("userId"));
 		jobMaster.setShipName(jobMasterEntrymodel.getShipName());
@@ -183,7 +183,7 @@ public class CHASystemController {
 		jobMaster.setPort(jobMasterEntrymodel.getPortName());
 		jobMaster.setQuantity(Double.parseDouble(jobMasterEntrymodel
 				.getCommodityQuantity()));
-		jobMaster.setUnit(jobMasterEntrymodel.getUnit());
+		//jobMaster.setUnit(jobMasterEntrymodel.getUnit());
 		jobMaster.setUserId((String) (session.getAttribute("userId")));
 		jobMaster.setShipName(jobMasterEntrymodel.getShipName());
 		jobMaster.setAdvanceAmount(Double.parseDouble(jobMasterEntrymodel

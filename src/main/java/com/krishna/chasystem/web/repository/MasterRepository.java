@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.krishna.chasystem.web.constants.ScheduleEnum;
 import com.krishna.chasystem.web.dto.Master;
 
 @Repository
@@ -37,7 +36,7 @@ public class MasterRepository {
 		master.setCurrentCredit(10000);
 		master.setCurrentDebit(900);
 		master.setOpeningBalance(10000);
-		master.setSchedule(ScheduleEnum.valueOf("ABC"));
+		master.setScheduleCode(1001);
 		masterList.add(master);
 		
 		master = new Master();
@@ -47,7 +46,7 @@ public class MasterRepository {
 		master.setCurrentCredit(90000);
 		master.setCurrentDebit(1000);
 		master.setOpeningBalance(80000);
-		master.setSchedule(ScheduleEnum.valueOf("BCD"));
+		master.setScheduleCode(1002);
 		masterList.add(master);
 		
 		return masterList;

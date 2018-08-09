@@ -4,6 +4,7 @@ public class BranchMaster {
 
 	private String branchCode;
 	private String branchName;
+	
 	public String getBranchCode() {
 		return branchCode;
 	}
