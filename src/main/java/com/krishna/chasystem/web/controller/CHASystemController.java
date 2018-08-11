@@ -67,12 +67,20 @@ public class CHASystemController {
 	public String authenticateUser(@Validated LoginPageModel loginPageModel,
 			Locale locale, Model model, HttpServletRequest request) {
 		logger.info("Log In Requested, locale = " + locale);
+		UserMaster authenticatedUser = new UserMaster();
 		boolean isAuthenticated = false;
 		UserMaster user = new UserMaster();
 		user.setUserName(loginPageModel.getUserName());
 		user.setPassword(loginPageModel.getPassword());
 		try {
-			isAuthenticated = userMasterService.isAuthenticatedUser(user);
+			authenticatedUser = userMasterService.getAuthenticatedUser(user);
+			if(authenticatedUser == null)
+			{
+				isAuthenticated = false;
+			}
+			else {
+				isAuthenticated = true;
+			}
 		} catch (ClassNotFoundException | SQLException e) {
 			logger.error(e.getMessage(), e);
 			return "error";
@@ -89,7 +97,7 @@ public class CHASystemController {
 				return "error";
 			}
 			
-			session.setAttribute("userName", loginPageModel.getUserName());
+			session.setAttribute("userId", authenticatedUser.getUserId());
 			session.setAttribute("accountingYear",
 					loginPageModel.getAccountingYearCode());
 			session.setAttribute("branch", loginPageModel.getBranch());
@@ -141,7 +149,7 @@ public class CHASystemController {
 		jobMaster.setJobNumber(jobMasterEntrymodel.getJobNumber());
 		jobMaster.setJobCreationDate(CommonUtils.getCurrentDateInSql());
 		jobMaster.setBeNo(jobMasterEntrymodel.getBeNo());
-		jobMaster.setBranchCode(jobMasterEntrymodel.getBranchCode());
+		jobMaster.setBranchCode(Integer.parseInt((String)request.getSession().getAttribute("branch")));
 		jobMaster.setCity(jobMasterEntrymodel.getCityName());
 		jobMaster.setCommodity(jobMasterEntrymodel.getCommodity());
 		jobMaster.setDispatchFrom(jobMasterEntrymodel.getDispatchedFrom());
@@ -152,11 +160,12 @@ public class CHASystemController {
 		jobMaster.setPort(jobMasterEntrymodel.getPortName());
 		jobMaster.setQuantity(Double.parseDouble(jobMasterEntrymodel.getCommodityQuantity()));
 		jobMaster.setUnitId(Integer.parseInt(jobMasterEntrymodel.getUnitId()));
-		jobMaster.setUserId((String) request.getSession().getAttribute("userName"));
+		jobMaster.setUserId((Long)request.getSession().getAttribute("userId"));
 		jobMaster.setShipName(jobMasterEntrymodel.getShipName());
 		jobMaster.setAdvanceAmount(Double.parseDouble(jobMasterEntrymodel.getAdvanceAmount()));
 		jobMaster.setNarration(jobMasterEntrymodel.getNarration());
 		jobMaster.setTurnKey(jobMasterEntrymodel.getTurnKey());
+		jobMaster.setYearCode(Integer.parseInt((String)request.getSession().getAttribute("accountingYear")));
 
 		try {
 			recordsUpdated = jobMasterService.addJobMasterEntry(jobMaster);
@@ -170,8 +179,8 @@ public class CHASystemController {
 				expenseMasterList = expenseMasterService
 						.getAllExpenseMasterRecords();
 			} catch (ClassNotFoundException | SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				logger.error(e.getMessage());
+				return "error";
 			}
 			model.addAttribute("expenseMasterList", expenseMasterList);
 			model.addAttribute("recordsUpdated", true);
@@ -191,7 +200,7 @@ public class CHASystemController {
 		jobMaster.setJobNumber(jobMasterEntrymodel.getJobNumber());
 		jobMaster.setJobCreationDate(CommonUtils.getCurrentDateInSql());
 		jobMaster.setBeNo(jobMasterEntrymodel.getBeNo());
-		jobMaster.setBranchCode(jobMasterEntrymodel.getBranchCode());
+		jobMaster.setBranchCode((int) (session.getAttribute("userId")));
 		jobMaster.setCity(jobMasterEntrymodel.getCityName());
 		jobMaster.setCommodity(jobMasterEntrymodel.getCommodity());
 		jobMaster.setDispatchFrom(jobMasterEntrymodel.getDispatchedFrom());
@@ -203,7 +212,7 @@ public class CHASystemController {
 		jobMaster.setQuantity(Double.parseDouble(jobMasterEntrymodel
 				.getCommodityQuantity()));
 		jobMaster.setUnitId(Integer.parseInt(jobMasterEntrymodel.getUnitId()));
-		jobMaster.setUserId((String) (session.getAttribute("userId")));
+		jobMaster.setUserId((Long) (session.getAttribute("userId")));
 		jobMaster.setShipName(jobMasterEntrymodel.getShipName());
 		jobMaster.setAdvanceAmount(Double.parseDouble(jobMasterEntrymodel
 				.getAdvanceAmount()));
@@ -222,8 +231,8 @@ public class CHASystemController {
 				expenseMasterList = expenseMasterService
 						.getAllExpenseMasterRecords();
 			} catch (ClassNotFoundException | SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				logger.error(e.getMessage());
+				return "error";
 			}
 			model.addAttribute("expenseMasterList", expenseMasterList);
 			model.addAttribute("recordsUpdated", true);

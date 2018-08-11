@@ -57,7 +57,7 @@
 						</div>
 						<div class="form-group row">
 							<div class="col  align-self-center">
-								<select name="accountingYear" class="form-control"
+								<select name="accountingYearCode" class="form-control"
 									required="required">
 									<option value="">Select Accounting Year</option>
 									<%

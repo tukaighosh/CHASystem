@@ -108,13 +108,13 @@
 							<tr>
 								<td><label>UNIT: </label></td>
 								<td>
-								<select name="unit" required="required" class="form-control">
+								<select name="unitId" required="required" class="form-control">
 										<option value="">Select Unit            </option>
 										<%
 											List<UnitMaster> unitList = (List<UnitMaster>) session.getAttribute("unitList");
 											for (UnitMaster unit : unitList) {
 										%>
-										<option>
+										<option value="<%=unit.getUnitId()%>">
 											<%=unit.getUnitName()%>
 										</option>
 										<%

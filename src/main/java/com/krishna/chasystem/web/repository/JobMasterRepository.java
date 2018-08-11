@@ -27,12 +27,12 @@ public class JobMasterRepository {
 		{
 			con = JdbcConnection.getConnection();
 		}
-		String sql = "insert into job_master values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "insert into job_master values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		
 		PreparedStatement preparedStatement = con.prepareStatement(sql);
 		preparedStatement.setString(1, jobMaster.getJobNumber());
 		preparedStatement.setString(2, jobMaster.getImportOrExport());
-		preparedStatement.setString(3, jobMaster.getBranchCode());
+		preparedStatement.setInt(3, jobMaster.getBranchCode());
 		preparedStatement.setString(4, jobMaster.getShipName());
 		preparedStatement.setString(5, jobMaster.getDispatchFrom());
 		preparedStatement.setString(6, jobMaster.getDispatchTo());
@@ -44,11 +44,12 @@ public class JobMasterRepository {
 		preparedStatement.setInt(12, jobMaster.getUnitId());
 		preparedStatement.setDouble(13, jobMaster.getQuantity());
 		preparedStatement.setDate(14, CommonUtils.getCurrentDateInSql());
-		preparedStatement.setString(15, jobMaster.getUserId());
+		preparedStatement.setLong(15, jobMaster.getUserId());
 		preparedStatement.setString(16, jobMaster.getJobCompleted());
 		preparedStatement.setString(17, jobMaster.getNarration());
 		preparedStatement.setString(18, jobMaster.getTurnKey());
 		preparedStatement.setDouble(19, jobMaster.getAdvanceAmount());
+		preparedStatement.setInt(20, jobMaster.getYearCode());
 		
 		recordsAdded = preparedStatement.executeUpdate();// data is inserted after this line is executed
 		logger.info(recordsAdded+" job_master(s) added");
