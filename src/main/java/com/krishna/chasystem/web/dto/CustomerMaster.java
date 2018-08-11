@@ -2,13 +2,13 @@ package com.krishna.chasystem.web.dto;
 
 public class CustomerMaster {
 	
-	private long customerId;
+	private int customerId;
 	private String accountCode;
 	
 	public long getCustomerId() {
 		return customerId;
 	}
-	public void setCustomerId(long customerId) {
+	public void setCustomerId(int customerId) {
 		this.customerId = customerId;
 	}
 	public String getAccountCode() {

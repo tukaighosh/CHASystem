@@ -19,11 +19,11 @@ public class JobMasterEntryPageModel {
 	private String creditDays;
 	private String commodity;
 	private String commodityQuantity;
-	private String unit;
+	private String unitId;
 	private String advanceAmount;
 	private String turnKey;
 	private String jobOrderNumber;
-	private String branch;
+	private String branchCode;
 	private String narration;
 	
 	
@@ -112,11 +112,11 @@ public class JobMasterEntryPageModel {
 	public void setCommodityQuantity(String commodityQuantity) {
 		this.commodityQuantity = commodityQuantity;
 	}
-	public String getUnit() {
-		return unit;
+	public String getUnitId() {
+		return unitId;
 	}
-	public void setUnit(String unit) {
-		this.unit = unit;
+	public void setUnitId(String unitId) {
+		this.unitId = unitId;
 	}
 	public String getAdvanceAmount() {
 		return advanceAmount;
@@ -136,11 +136,11 @@ public class JobMasterEntryPageModel {
 	public void setJobOrderNumber(String jobOrderNumber) {
 		this.jobOrderNumber = jobOrderNumber;
 	}
-	public String getBranch() {
-		return branch;
+	public String getBranchCode() {
+		return branchCode;
 	}
-	public void setBranch(String branch) {
-		this.branch = branch;
+	public void setBranchCode(String branchCode) {
+		this.branchCode = branchCode;
 	}
 	public String getNarration() {
 		return narration;
@@ -158,8 +158,8 @@ public class JobMasterEntryPageModel {
 				+ ", beNo=" + beNo + ", refNo=" + refNo + ", partyRefNo="
 				+ partyRefNo + ", creditDays=" + creditDays + ", commodity="
 				+ commodity + ", commodityQuantity=" + commodityQuantity
-				+ ", unit=" + unit + ", advanceAmount=" + advanceAmount
+				+ ", unit=" + unitId + ", advanceAmount=" + advanceAmount
 				+ ", turnKey=" + turnKey + ", jobOrderNumber=" + jobOrderNumber
-				+ ", branch=" + branch + ", narration=" + narration + "]";
+				+ ", branchCode=" + branchCode + ", narration=" + narration + "]";
 	}
 }

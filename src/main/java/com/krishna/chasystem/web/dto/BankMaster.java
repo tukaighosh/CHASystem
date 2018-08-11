@@ -2,16 +2,16 @@ package com.krishna.chasystem.web.dto;
 
 public class BankMaster {
 
-	private long bankCode;
+	private int bankCode;
 	private String bankName;
 	private String accountCode;
-	private long checkPrintFormatId;
+	private int checkPrintFormatId;
 	private String transactionCode;
 	
-	public long getBankCode() {
+	public int getBankCode() {
 		return bankCode;
 	}
-	public void setBankCode(long bankCode) {
+	public void setBankCode(int bankCode) {
 		this.bankCode = bankCode;
 	}
 	public String getBankName() {
@@ -27,10 +27,10 @@ public class BankMaster {
 		this.accountCode = accountCode;
 	}
 	
-	public long getCheckPrintFormatId() {
+	public int getCheckPrintFormatId() {
 		return checkPrintFormatId;
 	}
-	public void setCheckPrintFormatId(long checkPrintFormatId) {
+	public void setCheckPrintFormatId(int checkPrintFormatId) {
 		this.checkPrintFormatId = checkPrintFormatId;
 	}
 	public String getTransactionCode() {

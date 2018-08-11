@@ -1,74 +1,40 @@
 package com.krishna.chasystem.web.repository;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
 import com.krishna.chasystem.web.dto.YearEntryMaster;
 
 @Repository
 public class YearRepository {
-	
-	public List<YearEntryMaster> getAllYears() {
-		List<YearEntryMaster> listOfYearEntries = new ArrayList<YearEntryMaster>();
+	Logger logger = Logger.getLogger(YearRepository.class);
+	Connection con;
 
-		YearEntryMaster yearEntryMaster = new YearEntryMaster();
-		yearEntryMaster.setBeginYear(2010);
-		yearEntryMaster.setEndYear(2011);
-		yearEntryMaster.setYearCode(1001);
-		listOfYearEntries.add(yearEntryMaster);
-		
-		yearEntryMaster = new YearEntryMaster();
-		yearEntryMaster.setBeginYear(2011);
-		yearEntryMaster.setEndYear(2012);
-		yearEntryMaster.setYearCode(1002);
-		listOfYearEntries.add(yearEntryMaster);
-		
-		yearEntryMaster = new YearEntryMaster();
-		yearEntryMaster.setBeginYear(2012);
-		yearEntryMaster.setEndYear(2013);
-		yearEntryMaster.setYearCode(1003);
-		listOfYearEntries.add(yearEntryMaster);
-		
-		yearEntryMaster = new YearEntryMaster();
-		yearEntryMaster.setBeginYear(2013);
-		yearEntryMaster.setEndYear(2014);
-		yearEntryMaster.setYearCode(1004);
-		listOfYearEntries.add(yearEntryMaster);
-		
-		yearEntryMaster = new YearEntryMaster();
-		yearEntryMaster.setBeginYear(2014);
-		yearEntryMaster.setEndYear(2015);
-		yearEntryMaster.setYearCode(1005);
-		listOfYearEntries.add(yearEntryMaster);
-		
-		yearEntryMaster = new YearEntryMaster();
-		yearEntryMaster.setBeginYear(2015);
-		yearEntryMaster.setEndYear(2016);
-		yearEntryMaster.setYearCode(1006);
-		listOfYearEntries.add(yearEntryMaster);
-		
-		
-		yearEntryMaster = new YearEntryMaster();
-		yearEntryMaster.setBeginYear(2016);
-		yearEntryMaster.setEndYear(2017);
-		yearEntryMaster.setYearCode(1007);
-		listOfYearEntries.add(yearEntryMaster);
-		
-		yearEntryMaster = new YearEntryMaster();
-		yearEntryMaster.setBeginYear(2017);
-		yearEntryMaster.setEndYear(2018);
-		yearEntryMaster.setYearCode(1008);
-		listOfYearEntries.add(yearEntryMaster);
-		
-		
-		yearEntryMaster = new YearEntryMaster();
-		yearEntryMaster.setBeginYear(2018);
-		yearEntryMaster.setEndYear(2019);
-		yearEntryMaster.setYearCode(1009);
-		listOfYearEntries.add(yearEntryMaster);
-		
+	public List<YearEntryMaster> getAllYears() throws ClassNotFoundException, SQLException {
+		List<YearEntryMaster> listOfYearEntries = new ArrayList<YearEntryMaster>();
+		if (con == null) {
+			con = JdbcConnection.getConnection();
+		}
+		String sql = "select * from year_master";
+
+		Statement stmt = con.createStatement();
+		ResultSet rs = stmt.executeQuery(sql);
+		YearEntryMaster yearEntryMaster;
+		while(rs.next())
+		{
+			yearEntryMaster = new YearEntryMaster();
+			yearEntryMaster.setBeginYear(rs.getInt(2));
+			yearEntryMaster.setEndYear(rs.getInt(3));
+			yearEntryMaster.setYearCode(rs.getInt(1));
+			listOfYearEntries.add(yearEntryMaster);
+		}
 		return listOfYearEntries;
 	}
 

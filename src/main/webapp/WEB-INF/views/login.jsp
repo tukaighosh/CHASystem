@@ -80,7 +80,7 @@
 								<select name="branch" class="form-control" required="required">
 									<option value="">Select Branch</option>
 									<%
-										Map<String, String> branchMap = (Map<String, String>) request
+										Map<Integer, String> branchMap = (Map<Integer, String>) request
 												.getAttribute("branchMap");
 										for (Entry entry : branchMap.entrySet()) {
 									%>
