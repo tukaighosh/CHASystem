@@ -166,6 +166,7 @@ public class CHASystemController {
 		jobMaster.setNarration(jobMasterEntrymodel.getNarration());
 		jobMaster.setTurnKey(jobMasterEntrymodel.getTurnKey());
 		jobMaster.setYearCode(Integer.parseInt((String)request.getSession().getAttribute("accountingYear")));
+		jobMaster.setAccountCode(jobMasterEntrymodel.getAccountCode());
 
 		try {
 			recordsUpdated = jobMasterService.addJobMasterEntry(jobMaster);

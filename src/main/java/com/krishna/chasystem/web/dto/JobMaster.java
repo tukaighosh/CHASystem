@@ -5,7 +5,6 @@ import java.sql.Date;
 
 public class JobMaster {
 
-	
 	private String jobNumber;
 	private String importOrExport;
 	private int branchCode;
@@ -26,6 +25,7 @@ public class JobMaster {
 	private String narration;
 	private String turnKey;
 	private int yearCode;
+	private String accountCode;
 	
 	
 	
@@ -151,6 +151,12 @@ public class JobMaster {
 	public void setYearCode(int yearCode) {
 		this.yearCode = yearCode;
 	}
+	public String getAccountCode() {
+		return accountCode;
+	}
+	public void setAccountCode(String accountCode) {
+		this.accountCode = accountCode;
+	}
 	@Override
 	public String toString() {
 		return "JobMaster [jobNumber=" + jobNumber + ", importOrExport=" + importOrExport + ", branchCode=" + branchCode
@@ -158,6 +164,6 @@ public class JobMaster {
 				+ port + ", beNo=" + beNo + ", city=" + city + ", partyRefNo=" + partyRefNo + ", commodity=" + commodity
 				+ ", unitId=" + unitId + ", quantity=" + quantity + ", jobCreationDate=" + jobCreationDate + ", userId="
 				+ userId + ", jobCompleted=" + jobCompleted + ", advanceAmount=" + advanceAmount + ", narration="
-				+ narration + ", turnKey=" + turnKey + ", yearCode=" + yearCode + "]";
+				+ narration + ", turnKey=" + turnKey + ", yearCode=" + yearCode + ", accountCode=" + accountCode + "]";
 	}
 }

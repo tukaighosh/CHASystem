@@ -39,7 +39,7 @@
 						<table class="table">
 							<tr>
 								<td><label>PARTY NAME: </label></td>
-								<td><select name="partyName" required="required" class="form-control">
+								<td><select name="accountCode" required="required" class="form-control">
 										<option value="">Select Party Name</option>
 										<%
 											Map<Integer, String> debtorsMapFromMasterTable = (Map<Integer, String>) session.getAttribute("debtorsMapFromMasterTable");

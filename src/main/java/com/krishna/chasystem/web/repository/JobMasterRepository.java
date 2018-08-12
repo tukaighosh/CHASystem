@@ -27,7 +27,7 @@ public class JobMasterRepository {
 		{
 			con = JdbcConnection.getConnection();
 		}
-		String sql = "insert into job_master values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "insert into job_master values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		
 		PreparedStatement preparedStatement = con.prepareStatement(sql);
 		preparedStatement.setString(1, jobMaster.getJobNumber());
@@ -50,6 +50,7 @@ public class JobMasterRepository {
 		preparedStatement.setString(18, jobMaster.getTurnKey());
 		preparedStatement.setDouble(19, jobMaster.getAdvanceAmount());
 		preparedStatement.setInt(20, jobMaster.getYearCode());
+		preparedStatement.setString(21, jobMaster.getAccountCode());
 		
 		recordsAdded = preparedStatement.executeUpdate();// data is inserted after this line is executed
 		logger.info(recordsAdded+" job_master(s) added");

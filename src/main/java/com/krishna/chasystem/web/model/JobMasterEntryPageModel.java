@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 public class JobMasterEntryPageModel {
 
 	private String jobNumber;
-	private String partyName;
+	private String accountCode;
 	private String importOrExport;
 	private String dispatchedFrom;
 	private String dispatchedTo;
@@ -33,11 +33,11 @@ public class JobMasterEntryPageModel {
 	public void setJobNumber(String jobNumber) {
 		this.jobNumber = jobNumber;
 	}
-	public String getPartyName() {
-		return partyName;
+	public String getAccountCode() {
+		return accountCode;
 	}
-	public void setPartyName(String partyName) {
-		this.partyName = partyName;
+	public void setAccountCode(String accountCode) {
+		this.accountCode = accountCode;
 	}
 	public String getImportOrExport() {
 		return importOrExport;
@@ -150,16 +150,12 @@ public class JobMasterEntryPageModel {
 	}
 	@Override
 	public String toString() {
-		return "JobMasterEntryPageModel [jobNumber=" + jobNumber
-				+ ", partyName=" + partyName + ", importOrExport="
-				+ importOrExport + ", dispatchedFrom=" + dispatchedFrom
-				+ ", dispatchedTo=" + dispatchedTo + ", portName=" + portName
-				+ ", shipName=" + shipName + ", cityName=" + cityName
-				+ ", beNo=" + beNo + ", refNo=" + refNo + ", partyRefNo="
-				+ partyRefNo + ", creditDays=" + creditDays + ", commodity="
-				+ commodity + ", commodityQuantity=" + commodityQuantity
-				+ ", unit=" + unitId + ", advanceAmount=" + advanceAmount
-				+ ", turnKey=" + turnKey + ", jobOrderNumber=" + jobOrderNumber
-				+ ", branchCode=" + branchCode + ", narration=" + narration + "]";
+		return "JobMasterEntryPageModel [jobNumber=" + jobNumber + ", accountCode=" + accountCode + ", importOrExport="
+				+ importOrExport + ", dispatchedFrom=" + dispatchedFrom + ", dispatchedTo=" + dispatchedTo
+				+ ", portName=" + portName + ", shipName=" + shipName + ", cityName=" + cityName + ", beNo=" + beNo
+				+ ", refNo=" + refNo + ", partyRefNo=" + partyRefNo + ", creditDays=" + creditDays + ", commodity="
+				+ commodity + ", commodityQuantity=" + commodityQuantity + ", unitId=" + unitId + ", advanceAmount="
+				+ advanceAmount + ", turnKey=" + turnKey + ", jobOrderNumber=" + jobOrderNumber + ", branchCode="
+				+ branchCode + ", narration=" + narration + "]";
 	}
 }
