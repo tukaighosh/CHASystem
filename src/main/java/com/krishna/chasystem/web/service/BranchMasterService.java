@@ -1,5 +1,6 @@
 package com.krishna.chasystem.web.service;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -15,9 +16,9 @@ public class BranchMasterService {
 	@Autowired
 	BranchMasterRepository branchMasterRepository;
 	
-	public Map<String,String> getBranchMasterMap()
+	public Map<Integer,String> getBranchMasterMap() throws ClassNotFoundException, SQLException
 	{
-		Map<String, String> branchMap = new TreeMap<String, String>();
+		Map<Integer, String> branchMap = new TreeMap<Integer, String>();
 		List<BranchMaster> branchMasterList = branchMasterRepository.getBranchMasterMap();
 		for(BranchMaster branchMaster : branchMasterList)
 		{

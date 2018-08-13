@@ -12,25 +12,26 @@ import com.krishna.chasystem.web.dto.UserMaster;
 @Repository
 public class UserMasterRepository {
 
-	public boolean isAuthenticatedUser(UserMaster user) throws ClassNotFoundException, SQLException
+	public UserMaster getAuthenticatedUser(UserMaster user) throws ClassNotFoundException, SQLException
 	{
-		boolean isAuthenticated = false;
-		/*Connection con = JdbcConnection.getConnection();
-		String sql = "select * from user_master where user_id=? and password=?";
+		UserMaster userMaster = null;
+		Connection con = JdbcConnection.getConnection();
+		String sql = "select * from user_master where user_name=? and password=?";
 		
 		PreparedStatement preparedStatement = con.prepareStatement(sql);
-		preparedStatement.setInt(1, user.getUserId());
+		preparedStatement.setString(1, user.getUserName());
 		preparedStatement.setString(2, user.getPassword());
 		
 		ResultSet rs = preparedStatement.executeQuery();
-		if(rs.getFetchSize()>0)
-			isAuthenticated=true;
-		rs.close();
-*/
-		if(user.getUserName().equals("admin") && user.getPassword().equals("admin"))
+		if(rs.next())
 		{
-		isAuthenticated = true;
+			userMaster = new UserMaster();
+			userMaster.setUserId(rs.getInt(1));
+			userMaster.setUserName(rs.getString(2));
+			userMaster.setPassword(rs.getString(3));
+			userMaster.setRole(rs.getString(4));
 		}
-		return isAuthenticated;
+		rs.close();
+		return userMaster;
 	}
 }

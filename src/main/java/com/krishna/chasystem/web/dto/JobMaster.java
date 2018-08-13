@@ -5,10 +5,9 @@ import java.sql.Date;
 
 public class JobMaster {
 
-	
 	private String jobNumber;
 	private String importOrExport;
-	private String branchCode;
+	private int branchCode;
 	private String shipName;
 	private String dispatchFrom;
 	private String dispatchTo;
@@ -20,19 +19,21 @@ public class JobMaster {
 	private int unitId;
 	private double quantity;
 	private Date jobCreationDate;
-	private String userId;
+	private long userId;
 	private String jobCompleted;
 	private double advanceAmount;
 	private String narration;
 	private String turnKey;
+	private int yearCode;
+	private String accountCode;
 	
 	
 	
 	
-	public String getUserId() {
+	public long getUserId() {
 		return userId;
 	}
-	public void setUserId(String userId) {
+	public void setUserId(long userId) {
 		this.userId = userId;
 	}
 	public String getJobCompleted() {
@@ -65,10 +66,10 @@ public class JobMaster {
 	public void setImportOrExport(String importOrExport) {
 		this.importOrExport = importOrExport;
 	}
-	public String getBranchCode() {
+	public int getBranchCode() {
 		return branchCode;
 	}
-	public void setBranchCode(String branchCode) {
+	public void setBranchCode(int branchCode) {
 		this.branchCode = branchCode;
 	}
 	public String getShipName() {
@@ -143,17 +144,26 @@ public class JobMaster {
 	public void setTurnKey(String turnKey) {
 		this.turnKey = turnKey;
 	}
+	
+	public int getYearCode() {
+		return yearCode;
+	}
+	public void setYearCode(int yearCode) {
+		this.yearCode = yearCode;
+	}
+	public String getAccountCode() {
+		return accountCode;
+	}
+	public void setAccountCode(String accountCode) {
+		this.accountCode = accountCode;
+	}
 	@Override
 	public String toString() {
-		return "JobMaster [jobNumber=" + jobNumber + ", importOrExport="
-				+ importOrExport + ", branchCode=" + branchCode + ", shipName="
-				+ shipName + ", dispatchFrom=" + dispatchFrom + ", dispatchTo="
-				+ dispatchTo + ", port=" + port + ", beNo=" + beNo + ", city="
-				+ city + ", partyRefNo=" + partyRefNo + ", commodity="
-				+ commodity + ", unit=" + unitId + ", quantity=" + quantity
-				+ ", jobCreationDate=" + jobCreationDate + ", userId=" + userId
-				+ ", jobCompleted=" + jobCompleted + ", advanceAmount="
-				+ advanceAmount + ", narration=" + narration + ", turnKey="
-				+ turnKey + "]";
+		return "JobMaster [jobNumber=" + jobNumber + ", importOrExport=" + importOrExport + ", branchCode=" + branchCode
+				+ ", shipName=" + shipName + ", dispatchFrom=" + dispatchFrom + ", dispatchTo=" + dispatchTo + ", port="
+				+ port + ", beNo=" + beNo + ", city=" + city + ", partyRefNo=" + partyRefNo + ", commodity=" + commodity
+				+ ", unitId=" + unitId + ", quantity=" + quantity + ", jobCreationDate=" + jobCreationDate + ", userId="
+				+ userId + ", jobCompleted=" + jobCompleted + ", advanceAmount=" + advanceAmount + ", narration="
+				+ narration + ", turnKey=" + turnKey + ", yearCode=" + yearCode + ", accountCode=" + accountCode + "]";
 	}
 }

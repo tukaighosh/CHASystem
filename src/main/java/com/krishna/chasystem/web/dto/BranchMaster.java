@@ -2,13 +2,13 @@ package com.krishna.chasystem.web.dto;
 
 public class BranchMaster {
 
-	private String branchCode;
+	private int branchCode;
 	private String branchName;
 	
-	public String getBranchCode() {
+	public int getBranchCode() {
 		return branchCode;
 	}
-	public void setBranchCode(String branchCode) {
+	public void setBranchCode(int branchCode) {
 		this.branchCode = branchCode;
 	}
 	public String getBranchName() {

@@ -13,9 +13,9 @@ public class UserMasterService {
 	@Autowired
 	UserMasterRepository userMasterRepo;
 	
-	public boolean isAuthenticatedUser(UserMaster user) throws ClassNotFoundException, SQLException
+	public UserMaster getAuthenticatedUser(UserMaster user) throws ClassNotFoundException, SQLException
 	{
-		return userMasterRepo.isAuthenticatedUser(user);
+		return userMasterRepo.getAuthenticatedUser(user);
 	}
 
 }

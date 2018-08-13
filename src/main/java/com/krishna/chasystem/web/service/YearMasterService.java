@@ -1,5 +1,6 @@
 package com.krishna.chasystem.web.service;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -14,7 +15,7 @@ public class YearMasterService {
 	@Autowired
 	YearRepository yearRepository;
 	
-	public Map<Integer, String> getyearCodeAndDurationMap()
+	public Map<Integer, String> getyearCodeAndDurationMap() throws ClassNotFoundException, SQLException
 	{
 		Map<Integer, String> yearCodeAndDurationMap = new TreeMap<Integer, String>();
 		List<YearEntryMaster> yearEntries = yearRepository.getAllYears();

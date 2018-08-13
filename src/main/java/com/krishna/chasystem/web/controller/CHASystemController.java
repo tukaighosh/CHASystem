@@ -50,10 +50,16 @@ public class CHASystemController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String login(Locale locale, Model model) {
 		logger.info("Log In Requested, locale = " + locale);
-		model.addAttribute("branchMap",
-				branchMasterService.getBranchMasterMap());
-		model.addAttribute("accountingYearMap",
-				yearMasterService.getyearCodeAndDurationMap());
+		try {
+			model.addAttribute("branchMap",
+					branchMasterService.getBranchMasterMap());
+			model.addAttribute("accountingYearMap",
+					yearMasterService.getyearCodeAndDurationMap());
+		} catch (ClassNotFoundException | SQLException e) {
+			logger.error(e.getMessage());
+			return "error";
+		}
+		
 		return "login";
 	}
 
@@ -61,33 +67,53 @@ public class CHASystemController {
 	public String authenticateUser(@Validated LoginPageModel loginPageModel,
 			Locale locale, Model model, HttpServletRequest request) {
 		logger.info("Log In Requested, locale = " + locale);
+		UserMaster authenticatedUser = new UserMaster();
 		boolean isAuthenticated = false;
 		UserMaster user = new UserMaster();
 		user.setUserName(loginPageModel.getUserName());
 		user.setPassword(loginPageModel.getPassword());
 		try {
-			isAuthenticated = userMasterService.isAuthenticatedUser(user);
+			authenticatedUser = userMasterService.getAuthenticatedUser(user);
+			if(authenticatedUser == null)
+			{
+				isAuthenticated = false;
+			}
+			else {
+				isAuthenticated = true;
+			}
 		} catch (ClassNotFoundException | SQLException e) {
 			logger.error(e.getMessage(), e);
 			return "error";
 		}
 		if (isAuthenticated) {
 			HttpSession session = request.getSession();
-			session.setAttribute("branchMap",
-					branchMasterService.getBranchMasterMap());
-			session.setAttribute("accountingYearMap",
-					yearMasterService.getyearCodeAndDurationMap());
-			session.setAttribute("userName", loginPageModel.getUserName());
+			try {
+				session.setAttribute("branchMap",
+						branchMasterService.getBranchMasterMap());
+				session.setAttribute("accountingYearMap",
+						yearMasterService.getyearCodeAndDurationMap());
+			} catch (ClassNotFoundException | SQLException e) {
+				logger.error(e.getMessage());
+				return "error";
+			}
+			
+			session.setAttribute("userId", authenticatedUser.getUserId());
 			session.setAttribute("accountingYear",
 					loginPageModel.getAccountingYearCode());
 			session.setAttribute("branch", loginPageModel.getBranch());
 
 			return "menu";
 		} else {
-			model.addAttribute("branchMap",
-					branchMasterService.getBranchMasterMap());
-			model.addAttribute("accountingYearMap",
-					yearMasterService.getyearCodeAndDurationMap());
+			try {
+				model.addAttribute("branchMap",
+						branchMasterService.getBranchMasterMap());
+				model.addAttribute("accountingYearMap",
+						yearMasterService.getyearCodeAndDurationMap());
+			} catch (ClassNotFoundException | SQLException e) {
+				logger.error(e.getMessage());
+				return "error";
+			}
+			
 			model.addAttribute("errorMessage", "Invalid UserName or Password");
 			return "login";
 		}
@@ -123,8 +149,7 @@ public class CHASystemController {
 		jobMaster.setJobNumber(jobMasterEntrymodel.getJobNumber());
 		jobMaster.setJobCreationDate(CommonUtils.getCurrentDateInSql());
 		jobMaster.setBeNo(jobMasterEntrymodel.getBeNo());
-		logger.info(jobMasterEntrymodel.getBranch());
-		jobMaster.setBranchCode(jobMasterEntrymodel.getBranch());
+		jobMaster.setBranchCode(Integer.parseInt((String)request.getSession().getAttribute("branch")));
 		jobMaster.setCity(jobMasterEntrymodel.getCityName());
 		jobMaster.setCommodity(jobMasterEntrymodel.getCommodity());
 		jobMaster.setDispatchFrom(jobMasterEntrymodel.getDispatchedFrom());
@@ -133,16 +158,15 @@ public class CHASystemController {
 		jobMaster.setJobCompleted("N");
 		jobMaster.setPartyRefNo(jobMasterEntrymodel.getPartyRefNo());
 		jobMaster.setPort(jobMasterEntrymodel.getPortName());
-		jobMaster.setQuantity(Double.parseDouble(jobMasterEntrymodel
-				.getCommodityQuantity()));
-		//jobMaster.setUnit(jobMasterEntrymodel.getUnit());
-		jobMaster.setUserId((String) request.getSession()
-				.getAttribute("userId"));
+		jobMaster.setQuantity(Double.parseDouble(jobMasterEntrymodel.getCommodityQuantity()));
+		jobMaster.setUnitId(Integer.parseInt(jobMasterEntrymodel.getUnitId()));
+		jobMaster.setUserId((Long)request.getSession().getAttribute("userId"));
 		jobMaster.setShipName(jobMasterEntrymodel.getShipName());
-		jobMaster.setAdvanceAmount(Double.parseDouble(jobMasterEntrymodel
-				.getAdvanceAmount()));
+		jobMaster.setAdvanceAmount(Double.parseDouble(jobMasterEntrymodel.getAdvanceAmount()));
 		jobMaster.setNarration(jobMasterEntrymodel.getNarration());
 		jobMaster.setTurnKey(jobMasterEntrymodel.getTurnKey());
+		jobMaster.setYearCode(Integer.parseInt((String)request.getSession().getAttribute("accountingYear")));
+		jobMaster.setAccountCode(jobMasterEntrymodel.getAccountCode());
 
 		try {
 			recordsUpdated = jobMasterService.addJobMasterEntry(jobMaster);
@@ -151,8 +175,14 @@ public class CHASystemController {
 			return "error";
 		}
 		if (recordsUpdated > 0) {
-			List<ExpenseMaster> expenseMasterList = expenseMasterService
-					.getAllExpenseMasterRecords();
+			List<ExpenseMaster> expenseMasterList = null;
+			try {
+				expenseMasterList = expenseMasterService
+						.getAllExpenseMasterRecords();
+			} catch (ClassNotFoundException | SQLException e) {
+				logger.error(e.getMessage());
+				return "error";
+			}
 			model.addAttribute("expenseMasterList", expenseMasterList);
 			model.addAttribute("recordsUpdated", true);
 		} else {
@@ -171,8 +201,7 @@ public class CHASystemController {
 		jobMaster.setJobNumber(jobMasterEntrymodel.getJobNumber());
 		jobMaster.setJobCreationDate(CommonUtils.getCurrentDateInSql());
 		jobMaster.setBeNo(jobMasterEntrymodel.getBeNo());
-		// logger.info(session.getBranch());
-		jobMaster.setBranchCode(jobMasterEntrymodel.getBranch());
+		jobMaster.setBranchCode((int) (session.getAttribute("userId")));
 		jobMaster.setCity(jobMasterEntrymodel.getCityName());
 		jobMaster.setCommodity(jobMasterEntrymodel.getCommodity());
 		jobMaster.setDispatchFrom(jobMasterEntrymodel.getDispatchedFrom());
@@ -183,8 +212,8 @@ public class CHASystemController {
 		jobMaster.setPort(jobMasterEntrymodel.getPortName());
 		jobMaster.setQuantity(Double.parseDouble(jobMasterEntrymodel
 				.getCommodityQuantity()));
-		//jobMaster.setUnit(jobMasterEntrymodel.getUnit());
-		jobMaster.setUserId((String) (session.getAttribute("userId")));
+		jobMaster.setUnitId(Integer.parseInt(jobMasterEntrymodel.getUnitId()));
+		jobMaster.setUserId((Long) (session.getAttribute("userId")));
 		jobMaster.setShipName(jobMasterEntrymodel.getShipName());
 		jobMaster.setAdvanceAmount(Double.parseDouble(jobMasterEntrymodel
 				.getAdvanceAmount()));
@@ -198,8 +227,14 @@ public class CHASystemController {
 			return "error";
 		}
 		if (recordsUpdated > 0) {
-			List<ExpenseMaster> expenseMasterList = expenseMasterService
-					.getAllExpenseMasterRecords();
+			List<ExpenseMaster> expenseMasterList = null;
+			try {
+				expenseMasterList = expenseMasterService
+						.getAllExpenseMasterRecords();
+			} catch (ClassNotFoundException | SQLException e) {
+				logger.error(e.getMessage());
+				return "error";
+			}
 			model.addAttribute("expenseMasterList", expenseMasterList);
 			model.addAttribute("recordsUpdated", true);
 		} else {

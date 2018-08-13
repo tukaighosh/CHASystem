@@ -39,7 +39,7 @@
 						<table class="table">
 							<tr>
 								<td><label>PARTY NAME: </label></td>
-								<td><select name="partyName" required="required" class="form-control">
+								<td><select name="accountCode" required="required" class="form-control">
 										<option value="">Select Party Name</option>
 										<%
 											Map<Integer, String> debtorsMapFromMasterTable = (Map<Integer, String>) session.getAttribute("debtorsMapFromMasterTable");
@@ -108,13 +108,13 @@
 							<tr>
 								<td><label>UNIT: </label></td>
 								<td>
-								<select name="unit" required="required" class="form-control">
+								<select name="unitId" required="required" class="form-control">
 										<option value="">Select Unit            </option>
 										<%
 											List<UnitMaster> unitList = (List<UnitMaster>) session.getAttribute("unitList");
 											for (UnitMaster unit : unitList) {
 										%>
-										<option>
+										<option value="<%=unit.getUnitId()%>">
 											<%=unit.getUnitName()%>
 										</option>
 										<%

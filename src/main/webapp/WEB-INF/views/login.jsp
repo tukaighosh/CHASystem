@@ -57,7 +57,7 @@
 						</div>
 						<div class="form-group row">
 							<div class="col  align-self-center">
-								<select name="accountingYear" class="form-control"
+								<select name="accountingYearCode" class="form-control"
 									required="required">
 									<option value="">Select Accounting Year</option>
 									<%
@@ -80,7 +80,7 @@
 								<select name="branch" class="form-control" required="required">
 									<option value="">Select Branch</option>
 									<%
-										Map<String, String> branchMap = (Map<String, String>) request
+										Map<Integer, String> branchMap = (Map<Integer, String>) request
 												.getAttribute("branchMap");
 										for (Entry entry : branchMap.entrySet()) {
 									%>
