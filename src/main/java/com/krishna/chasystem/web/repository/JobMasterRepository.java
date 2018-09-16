@@ -57,6 +57,45 @@ public class JobMasterRepository {
 		
 		return recordsAdded;
 	}
+	
+	
+	public int updateJobMasterEntry(JobMaster jobMaster) throws ClassNotFoundException, SQLException {
+		int recordsAdded = 0;
+		if(con == null)
+		{
+			con = JdbcConnection.getConnection();
+		}
+		String sql = "update job_master set ";
+		
+		PreparedStatement preparedStatement = con.prepareStatement(sql);
+		preparedStatement.setString(1, jobMaster.getJobNumber());
+		preparedStatement.setString(2, jobMaster.getImportOrExport());
+		preparedStatement.setInt(3, jobMaster.getBranchCode());
+		preparedStatement.setString(4, jobMaster.getShipName());
+		preparedStatement.setString(5, jobMaster.getDispatchFrom());
+		preparedStatement.setString(6, jobMaster.getDispatchTo());
+		preparedStatement.setString(7, jobMaster.getPort());
+		preparedStatement.setString(8, jobMaster.getBeNo());
+		preparedStatement.setString(9, jobMaster.getCity());
+		preparedStatement.setString(10, jobMaster.getPartyRefNo());
+		preparedStatement.setString(11, jobMaster.getCommodity());
+		preparedStatement.setInt(12, jobMaster.getUnitId());
+		preparedStatement.setDouble(13, jobMaster.getQuantity());
+		preparedStatement.setDate(14, CommonUtils.getCurrentDateInSql());
+		preparedStatement.setLong(15, jobMaster.getUserId());
+		preparedStatement.setString(16, jobMaster.getJobCompleted());
+		preparedStatement.setString(17, jobMaster.getNarration());
+		preparedStatement.setString(18, jobMaster.getTurnKey());
+		preparedStatement.setDouble(19, jobMaster.getAdvanceAmount());
+		preparedStatement.setInt(20, jobMaster.getYearCode());
+		preparedStatement.setString(21, jobMaster.getAccountCode());
+		
+		recordsAdded = preparedStatement.executeUpdate();// data is inserted after this line is executed
+		logger.info(recordsAdded+" job_master(s) added");
+		
+		return recordsAdded;
+	}
+	
 	// static synchronized method
 	public synchronized long getNextJobNumberFromSequence() throws ClassNotFoundException, SQLException {
 		
