@@ -1,8 +1,12 @@
 package com.krishna.chasystem.web.repository;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
 import org.apache.log4j.Logger;
 
@@ -11,6 +15,20 @@ import org.apache.log4j.Logger;
 public class JdbcConnection {
 	static Logger  logger = Logger.getLogger(JdbcConnection.class);
 	static Connection con;
+	private static String USERNAME;
+	private static String PASSWORD;
+	
+	static {
+		Properties properties = new Properties();
+		try {
+			properties.load(JdbcConnection.class.getResourceAsStream("/db.properties"));
+			USERNAME = properties.getProperty("DB.USERNAME");
+			PASSWORD = properties.getProperty("DB.PASSWORD");
+		} catch (IOException e) {
+			logger.error(e.getMessage(),e);
+		}
+		
+	}
 	
 	public static Connection getConnection() throws SQLException, ClassNotFoundException
 	{
@@ -31,7 +49,7 @@ public class JdbcConnection {
 					//step2 create  the connection object  
 					//Best Practice : This should be read from properties file
 					con=DriverManager.getConnection(  
-					"jdbc:oracle:thin:@localhost:1521:xe","KRISHNA","12121951");
+					"jdbc:oracle:thin:@localhost:1521:xe",USERNAME,PASSWORD);
 					
 					logger.info("Connection created: "+con);
 					return con;
