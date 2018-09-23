@@ -20,6 +20,12 @@ public class JobReceiptMaster {
 	private String userId;
 	private String branchCode;
 	private long id;
+	private short expenseCode;
+	private String accountCode;
+	private String bankAccountCode;
+	private String paymentMode;
+	private String chequeNumber;
+	private String rtgsNumber;
 	
 	
 	
@@ -114,12 +120,50 @@ public class JobReceiptMaster {
 	public void setLrDate(Date lrDate) {
 		this.lrDate = lrDate;
 	}
+	public short getExpenseCode() {
+		return expenseCode;
+	}
+	public void setExpenseCode(short expenseCode) {
+		this.expenseCode = expenseCode;
+	}
+	public String getAccountCode() {
+		return accountCode;
+	}
+	public void setAccountCode(String accountCode) {
+		this.accountCode = accountCode;
+	}
+	public String getBankAccountCode() {
+		return bankAccountCode;
+	}
+	public void setBankAccountCode(String bankAccountCode) {
+		this.bankAccountCode = bankAccountCode;
+	}
+	public String getPaymentMode() {
+		return paymentMode;
+	}
+	public void setPaymentMode(String paymentmode) {
+		this.paymentMode = paymentmode;
+	}
+	public String getChequeNumber() {
+		return chequeNumber;
+	}
+	public void setCheque_number(String chequeNumber) {
+		this.chequeNumber = chequeNumber;
+	}
+	public String getRtgsNumber() {
+		return rtgsNumber;
+	}
+	public void setRtgsNumber(String rtgsNumber) {
+		this.rtgsNumber = rtgsNumber;
+	}
 	@Override
 	public String toString() {
-		return "Job_Receipt [jobNumber=" + jobNumber + ", jobDate=" + jobDate + ", invoiceDate=" + invoiceDate
+		return "JobReceiptMaster [jobNumber=" + jobNumber + ", jobDate=" + jobDate + ", invoiceDate=" + invoiceDate
 				+ ", receiptNumber=" + receiptNumber + ", receiptDate=" + receiptDate + ", receiptAmount="
 				+ receiptAmount + ", receiptDetail=" + receiptDetail + ", billNo=" + billNo + ", runDate=" + runDate
 				+ ", lrNumber=" + lrNumber + ", lrDate=" + lrDate + ", invoiceNo=" + invoiceNo + ", userId=" + userId
-				+ ", branchCode=" + branchCode + ", id=" + id + "]";
+				+ ", branchCode=" + branchCode + ", id=" + id + ", expenseCode=" + expenseCode + ", accountCode="
+				+ accountCode + ", bankAccountCode=" + bankAccountCode + ", payment_mode=" + paymentMode
+				+ ", cheque_number=" + chequeNumber + ", rtgsNumber=" + rtgsNumber + "]";
 	}
 }

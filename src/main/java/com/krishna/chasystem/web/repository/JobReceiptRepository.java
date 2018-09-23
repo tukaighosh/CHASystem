@@ -40,12 +40,44 @@ public class JobReceiptRepository {
 		preparedStatement.setString(10, jobReceipt.getUserId());
 		preparedStatement.setString(11, jobReceipt.getBranchCode());
 		preparedStatement.setLong(12, getJobReceiptSequenceValue());
+		preparedStatement.setInt(13, jobReceipt.getExpenseCode());
+		preparedStatement.setString(14, jobReceipt.getAccountCode());
+		preparedStatement.setString(15, jobReceipt.getBankAccountCode());
+		preparedStatement.setString(16, jobReceipt.getPaymentMode());
+		preparedStatement.setString(17, jobReceipt.getChequeNumber());
+		preparedStatement.setString(18, jobReceipt.getRtgsNumber());
+		
 
 		recordsAdded = preparedStatement.executeUpdate();// data is inserted after this line is executed
 		logger.info(recordsAdded + " job_receipt(s) added");
 		return recordsAdded;
 
 	}
+	
+	public int updateJobMasterEntry(JobReceiptMaster jobReceipt) throws ClassNotFoundException, SQLException {
+		int recordsAdded = 0;
+		if (con == null) {
+			con = JdbcConnection.getConnection();
+		}
+		
+		String sql = "update job_master set JOB_DATE='" + jobReceipt.getBranchCode() + "', INVOICE_DATE='"
+				+ jobReceipt.getInvoiceDate() + "',RECEIPT_NUMBER='" + jobReceipt.getReceiptNumber() + "',RECEIPT_DATE='"
+				+ jobReceipt.getReceiptDate() + "',RECEIPT_AMOUNT=" + jobReceipt.getReceiptAmount() + ",RECEIPT_DETAIL='" + jobReceipt.getReceiptDetail()
+				+ "',RUN_DATE='" + jobReceipt.getRunDate() + "',JOB_NUMBER='" + jobReceipt.getJobNumber() + "',INVOICE_NUMBER="
+				+ jobReceipt.getInvoiceNo() + "',USER_ID=" + jobReceipt.getUserId() + ",BRANCH_CODE="
+				+ jobReceipt.getBranchCode() + ",EXPENSE_CODE="
+				+ jobReceipt.getExpenseCode() + ",ACCOUNT_CODE='" + jobReceipt.getAccountCode() + "',BANK_ACCOUNT_CODE='"
+				+ jobReceipt.getBankAccountCode() + "',PAYMENT_MODE='" + jobReceipt.getPaymentMode() + "',CHEQUE_NUMBER='"
+				+ jobReceipt.getChequeNumber() + ",RTGS_NUMBER='" + jobReceipt.getRtgsNumber() + "' where ID="+jobReceipt.getId();
+
+		Statement statement = con.createStatement();
+
+		recordsAdded = statement.executeUpdate(sql);
+		logger.info(recordsAdded + " job_receipt updated");
+
+		return recordsAdded;
+	}
+	
 	
 	public synchronized static long getJobReceiptSequenceValue() throws ClassNotFoundException, SQLException
 	{
