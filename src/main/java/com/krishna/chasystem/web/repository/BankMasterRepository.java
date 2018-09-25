@@ -7,8 +7,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
+
 import com.krishna.chasystem.web.dto.BankMaster;
 
 @Repository
@@ -58,6 +60,24 @@ public class BankMasterRepository {
 		logger.info(recordsAdded + " bank_master(s) added");
 
 		return recordsAdded;
+	}
+	
+	public int updateBankMaster(BankMaster bankMaster) throws ClassNotFoundException, SQLException {
+		int recordsUpdated = 0;
+		if (con == null) {
+			con = JdbcConnection.getConnection();
+		}
+		
+		String sql = "update bank_master set BANK_NAME='" + bankMaster.getBankName() + "', TRANSACTION_CODE='"
+				+ bankMaster.getTransactionCode() + "',CHECK_PRINT_FORMAT_ID=" + bankMaster.getCheckPrintFormatId() + ", ACCOUNT_CODE='"+bankMaster.getAccountCode()+", where BANK_ACCOUNT_CODE="
+				+ bankMaster.getBankCode();
+
+		Statement statement = con.createStatement();
+
+		recordsUpdated = statement.executeUpdate(sql);
+		logger.info(recordsUpdated + " job_receipt updated");
+
+		return recordsUpdated;
 	}
 
 	public synchronized long getNextBankCodeFromSequence() throws ClassNotFoundException, SQLException {

@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
@@ -55,12 +57,12 @@ public class JobReceiptRepository {
 	}
 	
 	public int updateJobMasterEntry(JobReceiptMaster jobReceipt) throws ClassNotFoundException, SQLException {
-		int recordsAdded = 0;
+		int recordsUpdated = 0;
 		if (con == null) {
 			con = JdbcConnection.getConnection();
 		}
 		
-		String sql = "update job_master set JOB_DATE='" + jobReceipt.getBranchCode() + "', INVOICE_DATE='"
+		String sql = "update job_receipt set JOB_DATE='" + jobReceipt.getBranchCode() + "', INVOICE_DATE='"
 				+ jobReceipt.getInvoiceDate() + "',RECEIPT_NUMBER='" + jobReceipt.getReceiptNumber() + "',RECEIPT_DATE='"
 				+ jobReceipt.getReceiptDate() + "',RECEIPT_AMOUNT=" + jobReceipt.getReceiptAmount() + ",RECEIPT_DETAIL='" + jobReceipt.getReceiptDetail()
 				+ "',RUN_DATE='" + jobReceipt.getRunDate() + "',JOB_NUMBER='" + jobReceipt.getJobNumber() + "',INVOICE_NUMBER="
@@ -72,12 +74,48 @@ public class JobReceiptRepository {
 
 		Statement statement = con.createStatement();
 
-		recordsAdded = statement.executeUpdate(sql);
-		logger.info(recordsAdded + " job_receipt updated");
+		recordsUpdated = statement.executeUpdate(sql);
+		logger.info(recordsUpdated + " job_receipt updated");
 
-		return recordsAdded;
+		return recordsUpdated;
 	}
 	
+	
+	public List<JobReceiptMaster> getJobReceiptMasterList(int... args) throws ClassNotFoundException, SQLException {
+		List<JobReceiptMaster> jobReceiptMasterList = new ArrayList<JobReceiptMaster>();
+		if (con == null) {
+			con = JdbcConnection.getConnection();
+		}
+		String sql = "select * from job_receipt where id="+args[0];
+
+		Statement stmt = con.createStatement();
+		ResultSet rs = stmt.executeQuery(sql);
+
+		JobReceiptMaster jobReceiptMaster = null;
+		while (rs.next()) {
+			jobReceiptMaster = new JobReceiptMaster();
+			jobReceiptMaster.setJobDate(rs.getDate(1));
+			jobReceiptMaster.setInvoiceDate(rs.getDate(2));
+			jobReceiptMaster.setReceiptNumber(rs.getString(3));
+			jobReceiptMaster.setReceiptDate(rs.getDate(4));
+			jobReceiptMaster.setReceiptAmount(rs.getDouble(5));
+			jobReceiptMaster.setReceiptDetail(rs.getString(6));
+			jobReceiptMaster.setRunDate(rs.getDate(7));
+			jobReceiptMaster.setJobNumber(rs.getString(8));
+			jobReceiptMaster.setInvoiceNo(rs.getString(9));
+			jobReceiptMaster.setUserId(rs.getString(10));
+			jobReceiptMaster.setBranchCode(rs.getString(11));
+			jobReceiptMaster.setId(rs.getLong(12));
+			jobReceiptMaster.setExpenseCode(rs.getShort(13));
+			jobReceiptMaster.setAccountCode(rs.getString(14));
+			jobReceiptMaster.setBankAccountCode(rs.getString(15));
+			jobReceiptMaster.setPaymentMode(rs.getString(16));
+			jobReceiptMaster.setCheque_number(rs.getString(17));
+			jobReceiptMaster.setRtgsNumber(rs.getString(18));
+			jobReceiptMasterList.add(jobReceiptMaster);
+		}
+		return jobReceiptMasterList;
+	}
 	
 	public synchronized static long getJobReceiptSequenceValue() throws ClassNotFoundException, SQLException
 	{
