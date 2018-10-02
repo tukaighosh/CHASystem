@@ -1,5 +1,6 @@
 package com.krishna.chasystem.web.service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,7 @@ public class CompanyMasterService {
 	@Autowired
 	CompanyMasterRepository companyMasterRepository;
 	
-	public List<CompanyMaster> getAllCompanyMasterList()
+	public List<CompanyMaster> getAllCompanyMasterList() throws ClassNotFoundException, SQLException
 	{
 		return companyMasterRepository.getAllCompanyMasterList();
 	}
