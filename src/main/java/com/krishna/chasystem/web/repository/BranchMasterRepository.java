@@ -18,7 +18,12 @@ public class BranchMasterRepository {
 	Logger logger = Logger.getLogger(BranchMaster.class);
 	Connection con;
 
-	public List<BranchMaster> getBranchMasterMap() throws ClassNotFoundException, SQLException {
+	/**
+	 * @return
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
+	public List<BranchMaster> getBranchMasterList() throws ClassNotFoundException, SQLException {
 		List<BranchMaster> branchMasterList = new ArrayList<BranchMaster>();
 		if (con == null) {
 			con = JdbcConnection.getConnection();
@@ -38,6 +43,12 @@ public class BranchMasterRepository {
 		return branchMasterList;
 	}
 	
+	/**
+	 * @param branchMaster
+	 * @return
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
 	public int addBankMaster(BranchMaster branchMaster) throws ClassNotFoundException, SQLException {
 		int recordsAdded = 0;
 		if (con == null) {
@@ -55,6 +66,12 @@ public class BranchMasterRepository {
 		return recordsAdded;
 	}
 	
+	/**
+	 * @param branchMaster
+	 * @return
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
 	public int updateBankMaster(BranchMaster branchMaster) throws ClassNotFoundException, SQLException {
 		int recordsUpdated = 0;
 		if (con == null) {
@@ -72,7 +89,12 @@ public class BranchMasterRepository {
 		return recordsUpdated;
 	}
 	
-	public synchronized long getNextBankCodeFromSequence() throws ClassNotFoundException, SQLException {
+	/**
+	 * @return
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
+	public synchronized long getNextBranchCodeFromSequence() throws ClassNotFoundException, SQLException {
 
 		long nextJobNumber = 0;
 		if (con == null) {

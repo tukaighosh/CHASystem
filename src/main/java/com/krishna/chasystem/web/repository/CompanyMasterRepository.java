@@ -18,6 +18,11 @@ public class CompanyMasterRepository {
 	Logger logger = Logger.getLogger(BankMasterRepository.class);
 	Connection con;
 	
+	/**
+	 * @return
+	 * @throws SQLException
+	 * @throws ClassNotFoundException
+	 */
 	public List<CompanyMaster> getAllCompanyMasterList() throws SQLException, ClassNotFoundException {
 		List<CompanyMaster> companyList = new ArrayList<CompanyMaster>();
 		if (con == null) {
@@ -40,7 +45,13 @@ public class CompanyMasterRepository {
 		return companyList;
 	}
 	
-	public int addBankMaster(CompanyMaster company) throws ClassNotFoundException, SQLException {
+	/**
+	 * @param company
+	 * @return
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
+	public int addCompanyMaster(CompanyMaster company) throws ClassNotFoundException, SQLException {
 		int recordsAdded = 0;
 		if (con == null) {
 			con = JdbcConnection.getConnection();
@@ -48,9 +59,9 @@ public class CompanyMasterRepository {
 		String sql = "insert into company_master values(?,?,?,?,?)";
 
 		PreparedStatement preparedStatement = con.prepareStatement(sql);
-		preparedStatement.setInt(1, company.getCompanyCode());
+		preparedStatement.setLong(1, getNextCompanyCodeFromSequence());
 		preparedStatement.setString(2, company.getCompanyName());
-		preparedStatement.setInt(5, company.getYearCode());
+		preparedStatement.setInt(3, company.getYearCode());
 
 		recordsAdded = preparedStatement.executeUpdate();// data is inserted after this line is executed
 		logger.info(recordsAdded + " company_master(s) added");
@@ -58,4 +69,25 @@ public class CompanyMasterRepository {
 		return recordsAdded;
 	}
 
+	/**
+	 * @return
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
+	public synchronized long getNextCompanyCodeFromSequence() throws ClassNotFoundException, SQLException {
+
+		long nextJobNumber = 0;
+		if (con == null) {
+			con = JdbcConnection.getConnection();
+		}
+		String sql = "select company_master_sequence.nextval from dual";
+
+		Statement stmt = con.createStatement();
+		ResultSet rs = stmt.executeQuery(sql);
+		while (rs.next()) {
+			nextJobNumber = rs.getLong(1);
+		}
+		return nextJobNumber;
+	}
+	
 }

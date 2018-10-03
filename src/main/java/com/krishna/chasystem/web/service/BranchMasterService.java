@@ -19,7 +19,7 @@ public class BranchMasterService {
 	public Map<Integer,String> getBranchMasterMap() throws ClassNotFoundException, SQLException
 	{
 		Map<Integer, String> branchMap = new TreeMap<Integer, String>();
-		List<BranchMaster> branchMasterList = branchMasterRepository.getBranchMasterMap();
+		List<BranchMaster> branchMasterList = branchMasterRepository.getBranchMasterList();
 		for(BranchMaster branchMaster : branchMasterList)
 		{
 			branchMap.put(branchMaster.getBranchCode(), branchMaster.getBranchCode()+"-"+branchMaster.getBranchName());
