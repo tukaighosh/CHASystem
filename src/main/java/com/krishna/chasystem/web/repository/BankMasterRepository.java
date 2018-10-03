@@ -18,6 +18,11 @@ public class BankMasterRepository {
 	Logger logger = Logger.getLogger(BankMasterRepository.class);
 	Connection con;
 
+	/** For reading all the {@link BankMaster} data
+	 * @return
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
 	public List<BankMaster> getBankMasterList() throws ClassNotFoundException, SQLException {
 		List<BankMaster> bankMasterList = new ArrayList<BankMaster>();
 		if (con == null) {
@@ -42,6 +47,12 @@ public class BankMasterRepository {
 		return bankMasterList;
 	}
 
+	/** Adds new {@link BankMaster} entry
+	 * @param bankMaster
+	 * @return
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
 	public int addBankMaster(BankMaster bankMaster) throws ClassNotFoundException, SQLException {
 		int recordsAdded = 0;
 		if (con == null) {
@@ -62,6 +73,12 @@ public class BankMasterRepository {
 		return recordsAdded;
 	}
 	
+	/** Updates existing {@link BankMaster}
+	 * @param bankMaster
+	 * @return
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
 	public int updateBankMaster(BankMaster bankMaster) throws ClassNotFoundException, SQLException {
 		int recordsUpdated = 0;
 		if (con == null) {
@@ -75,11 +92,39 @@ public class BankMasterRepository {
 		Statement statement = con.createStatement();
 
 		recordsUpdated = statement.executeUpdate(sql);
-		logger.info(recordsUpdated + " job_receipt updated");
+		logger.info(recordsUpdated + " bank_master updated");
+
+		return recordsUpdated;
+	}
+	
+	
+	/** Deletes existing {@link BankMaster} entry from BankMaster table based on bankCode value
+	 * @param bankCode
+	 * @return
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
+	public int deleteBankMaster(int bankCode) throws ClassNotFoundException, SQLException {
+		int recordsUpdated = 0;
+		if (con == null) {
+			con = JdbcConnection.getConnection();
+		}
+		
+		String sql = "delete from bank_master where BANK_CODE="+bankCode;
+
+		Statement statement = con.createStatement();
+
+		recordsUpdated = statement.executeUpdate(sql);
+		logger.info(recordsUpdated + " bank_master deleted");
 
 		return recordsUpdated;
 	}
 
+	/** Fetching next value of Bank_Code from bank_master_sequence sequence
+	 * @return
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
 	public synchronized long getNextBankCodeFromSequence() throws ClassNotFoundException, SQLException {
 
 		long nextJobNumber = 0;
