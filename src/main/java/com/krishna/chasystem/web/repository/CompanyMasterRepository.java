@@ -15,7 +15,7 @@ import com.krishna.chasystem.web.dto.CompanyMaster;
 
 @Repository
 public class CompanyMasterRepository {
-	Logger logger = Logger.getLogger(BankMasterRepository.class);
+	Logger logger = Logger.getLogger(CompanyMasterRepository.class);
 	Connection con;
 	
 	/**
@@ -68,6 +68,52 @@ public class CompanyMasterRepository {
 
 		return recordsAdded;
 	}
+	
+	/**
+	 * @param companyMaster
+	 * @return
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
+	public int updateCompanyMaster(CompanyMaster companyMaster) throws ClassNotFoundException, SQLException {
+		int recordsUpdated = 0;
+		if (con == null) {
+			con = JdbcConnection.getConnection();
+		}
+		
+		String sql = "update company_master set COMPANY_NAME='" + companyMaster.getCompanyName() +" where YEAR_CODE="
+				+ companyMaster.getYearCode();
+
+		Statement statement = con.createStatement();
+
+		recordsUpdated = statement.executeUpdate(sql);
+		logger.info(recordsUpdated + " company_master updated");
+
+		return recordsUpdated;
+	}
+	
+	/**
+	 * @param companyCode
+	 * @return
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
+	public int deleteCompanyMaster(int companyCode) throws ClassNotFoundException, SQLException {
+		int recordsUpdated = 0;
+		if (con == null) {
+			con = JdbcConnection.getConnection();
+		}
+		
+		String sql = "delete from company_master where COMPANY_CODE="+companyCode;
+
+		Statement statement = con.createStatement();
+
+		recordsUpdated = statement.executeUpdate(sql);
+		logger.info(recordsUpdated + " company_master deleted");
+
+		return recordsUpdated;
+	}
+	
 
 	/**
 	 * @return

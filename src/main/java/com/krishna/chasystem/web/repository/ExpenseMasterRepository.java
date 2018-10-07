@@ -100,7 +100,30 @@ public class ExpenseMasterRepository {
 
 		return recordsUpdated;
 	}
+
+		/** by krishna
+	 * @param ExpesnseCode
+	 * @return
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
+	public int deleteExpenseMaster(int expenseCode) throws ClassNotFoundException, SQLException {
+		int recordsUpdated = 0;
+		if (con == null) {
+			con = JdbcConnection.getConnection();
+		}
+		
+		String sql = "delete from expense_master where EXPENSE_CODE="+expenseCode;
+
+		Statement statement = con.createStatement();
+
+		recordsUpdated = statement.executeUpdate(sql);
+		logger.info(recordsUpdated + " expense_master deleted");
+
+		return recordsUpdated;
+	}
 	
+
 	/**
 	 * @return
 	 * @throws ClassNotFoundException

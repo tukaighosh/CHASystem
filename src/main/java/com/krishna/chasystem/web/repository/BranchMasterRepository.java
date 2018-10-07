@@ -89,6 +89,31 @@ public class BranchMasterRepository {
 		return recordsUpdated;
 	}
 	
+	
+	/** Deletes existing {@link BranchMaster} entry from BranchMaster table based on branchCode value
+	 * @param bankCode
+	 * @return
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
+	public int deleteBranchMaster(int branchCode) throws ClassNotFoundException, SQLException {
+		int recordsUpdated = 0;
+		if (con == null) {
+			con = JdbcConnection.getConnection();
+		}
+		
+		String sql = "delete from branch_master where BRANCH_CODE="+branchCode;
+
+		Statement statement = con.createStatement();
+
+		recordsUpdated = statement.executeUpdate(sql);
+		logger.info(recordsUpdated + " branch_master deleted");
+
+		return recordsUpdated;
+	}
+	
+	
+	
 	/**
 	 * @return
 	 * @throws ClassNotFoundException

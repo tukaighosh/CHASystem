@@ -82,6 +82,30 @@ public class JobMasterRepository {
 		return recordsAdded;
 	}
 
+	/** krishna
+	 * @param JobNumber
+	 * @return
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
+	public int deleteJobMaster(int jobnumber) throws ClassNotFoundException, SQLException {
+		int recordsUpdated = 0;
+		if (con == null) {
+			con = JdbcConnection.getConnection();
+		}
+		
+		String sql = "delete from job_master where JOB_NUM="+jobnumber;
+
+		Statement statement = con.createStatement();
+
+		recordsUpdated = statement.executeUpdate(sql);
+		logger.info(recordsUpdated + " job_master deleted");
+
+		return recordsUpdated;
+	}
+	
+
+	
 	// static synchronized method
 	public synchronized long getNextJobNumberFromSequence() throws ClassNotFoundException, SQLException {
 

@@ -116,6 +116,30 @@ public class JobReceiptRepository {
 		}
 		return jobReceiptMasterList;
 	}
+
+	/** krishna
+	 * @param jobreceipt
+	 * @return
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
+	public int deleteJobReceiptMaster(int jobnumber) throws ClassNotFoundException, SQLException {
+		int recordsUpdated = 0;
+		if (con == null) {
+			con = JdbcConnection.getConnection();
+		}
+		
+		String sql = "delete from job_receipt where JOB_NUM="+jobnumber;
+
+		Statement statement = con.createStatement();
+
+		recordsUpdated = statement.executeUpdate(sql);
+		logger.info(recordsUpdated + " job_receipt deleted");
+
+		return recordsUpdated;
+	}
+	
+	
 	
 	public synchronized static long getJobReceiptSequenceValue() throws ClassNotFoundException, SQLException
 	{
