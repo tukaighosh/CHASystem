@@ -81,7 +81,45 @@ public class JobMasterRepository {
 
 		return recordsAdded;
 	}
+	
+	public JobMaster getJobMasterById(String jobNumber) throws ClassNotFoundException, SQLException
+	{
+		JobMaster jobMaster = null;
+		if (con == null) {
+			con = JdbcConnection.getConnection();
+		}
+		String sql = "select * from job_master where JOB_NUM='"+jobNumber+"'";
 
+		Statement stmt = con.createStatement();
+		ResultSet rs = stmt.executeQuery(sql);
+		while(rs.next())
+		{
+			jobMaster = new JobMaster();
+			jobMaster.setJobNumber(rs.getString(1));
+			jobMaster.setImportOrExport(rs.getString(2));
+			jobMaster.setBranchCode(rs.getInt(3));
+			jobMaster.setShipName(rs.getString(4));
+			jobMaster.setDispatchTo(rs.getString(5));
+			jobMaster.setDispatchTo(rs.getString(6));
+			jobMaster.setPort(rs.getString(7));
+			jobMaster.setBeNo(rs.getString(8));
+			jobMaster.setCity(rs.getString(9));
+			jobMaster.setPartyRefNo(rs.getString(10));
+			jobMaster.setCommodity(rs.getString(11));
+			jobMaster.setUnitId(rs.getInt(12));
+			jobMaster.setQuantity(rs.getDouble(13));
+			jobMaster.setJobCreationDate(rs.getDate(14));
+			jobMaster.setUserId(rs.getLong(15));
+			jobMaster.setJobCompleted(rs.getString(16));
+			jobMaster.setNarration(rs.getString(17));
+			jobMaster.setTurnKey(rs.getString(18));
+			jobMaster.setAdvanceAmount(rs.getDouble(19));
+			jobMaster.setYearCode(rs.getInt(20));
+			jobMaster.setAccountCode(rs.getString(21));
+		}
+		return jobMaster;
+	}
+	
 	/** krishna
 	 * @param JobNumber
 	 * @return

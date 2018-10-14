@@ -138,6 +138,33 @@ public class CHASystemController {
 		}
 		return "jobMasterEntry";
 	}
+	
+	@RequestMapping(value = "/showJobMasterUpdatePage", method = RequestMethod.GET)
+	public String showJobMasterUpdate(Locale locale, Model model,
+			HttpSession session) {
+		model.addAttribute("serverTime", CommonUtils.getCurrentDateInString());
+		return "jobMasterUpdatePart1";
+	}
+	
+	@RequestMapping(value = "/showJobMasterUpdatePageWithData", method = RequestMethod.POST)
+	public String showobMasterUpdatePageWithData(Locale locale, Model model,
+			HttpServletRequest request) {
+		String jobNumber = request.getParameter("jobNumber");
+		JobMaster jobMaster = null;
+		try {
+			jobMaster = jobMasterService.getJobMasterById(jobNumber);
+			request.setAttribute("debtorsMapFromMasterTable",
+					masterService.getDebtorsMap());
+			request.setAttribute("unitList",
+					unitMasterService.getListOfUnitMaster());
+		} catch (ClassNotFoundException | SQLException e) {
+			logger.error(e.getMessage(), e);
+			return "error";
+		}
+		model.addAttribute("serverTime", CommonUtils.getCurrentDateInString());
+		model.addAttribute("jobMaster", jobMaster);
+		return "jobMasterUpdatePart2";
+	}
 
 	@RequestMapping(value = "/addJobMaster", method = RequestMethod.POST)
 	public String addJobMaster(
@@ -179,6 +206,9 @@ public class CHASystemController {
 			try {
 				expenseMasterList = expenseMasterService
 						.getAllExpenseMasterRecords();
+			request.getSession().removeAttribute("debtorsMapFromMasterTable");
+			request.getSession().removeAttribute("unitList");
+			
 			} catch (ClassNotFoundException | SQLException e) {
 				logger.error(e.getMessage());
 				return "error";
@@ -191,7 +221,7 @@ public class CHASystemController {
 		return "jobMasterUpdateResults";
 	}
 
-	@RequestMapping(value = "/updateJobMaster", method = RequestMethod.PUT)
+	@RequestMapping(value = "/updateJobMaster", method = RequestMethod.POST)
 	public String updateJobMaster(
 			@Validated JobMasterEntryPageModel jobMasterEntrymodel,
 			Locale locale, Model model, HttpSession session) {
@@ -221,21 +251,12 @@ public class CHASystemController {
 		jobMaster.setTurnKey(jobMasterEntrymodel.getTurnKey());
 
 		try {
-			recordsUpdated = jobMasterService.addJobMasterEntry(jobMaster);
+			recordsUpdated = jobMasterService.updateJobMasterEntry(jobMaster);
 		} catch (ClassNotFoundException | SQLException e) {
 			logger.error(e.getMessage(), e);
 			return "error";
 		}
 		if (recordsUpdated > 0) {
-			List<ExpenseMaster> expenseMasterList = null;
-			try {
-				expenseMasterList = expenseMasterService
-						.getAllExpenseMasterRecords();
-			} catch (ClassNotFoundException | SQLException e) {
-				logger.error(e.getMessage());
-				return "error";
-			}
-			model.addAttribute("expenseMasterList", expenseMasterList);
 			model.addAttribute("recordsUpdated", true);
 		} else {
 			model.addAttribute("recordsUpdated", false);

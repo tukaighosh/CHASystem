@@ -24,4 +24,13 @@ public class JobMasterService {
 		return jobMasterRepository.getNextJobNumberFromSequence();
 		
 	}
+	public int updateJobMasterEntry(JobMaster jobMaster) throws ClassNotFoundException, SQLException
+	{
+		return jobMasterRepository.updateJobMasterEntry(jobMaster);
+	}
+	public JobMaster getJobMasterById(String jobNumber) throws ClassNotFoundException, SQLException
+	{
+		return jobMasterRepository.getJobMasterById(jobNumber);
+	}
+	
 }
