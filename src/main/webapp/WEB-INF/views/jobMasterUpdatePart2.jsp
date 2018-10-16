@@ -18,7 +18,6 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="./resources/css/jobMasterEntry.css">
-<script type="text/javascript" src="./resources/js/jobMasterEntry.js"></script>
 <title>CHASystem Private Limited</title>
 </head>
 <body>
@@ -48,7 +47,8 @@
 											Map<Integer, String> debtorsMapFromMasterTable = (Map<Integer, String>) request
 													.getAttribute("debtorsMapFromMasterTable");
 										%>
-										<option value=<%=jobMaster.getAccountCode() %> selected="selected"><%=debtorsMapFromMasterTable.get(jobMaster.getAccountCode())%></option>
+										<option value=<%=jobMaster.getAccountCode()%>
+											selected="selected"><%=debtorsMapFromMasterTable.get(jobMaster.getAccountCode())%></option>
 										<%
 											for (Entry entry : debtorsMapFromMasterTable.entrySet()) {
 										%>
@@ -61,69 +61,65 @@
 								</select></td>
 								<td><label>DATE: </label></td>
 								<td><input type="text" name="date" readonly="readonly"
-									required="required"
-									value="<%=jobMaster.getJobCreationDate()%>"
+									required="required" value="<%=jobMaster.getJobCreationDate()%>"
 									class="form-control"></td>
 								<td><label>JOB NUMBER: </label></td>
 								<td><input type="text" id="jobNumber" name="jobNumber"
 									value="<%=jobMaster.getJobNumber()%>"
-									style="display: none" readonly="readonly" class="form-control"
-									required="required"></td>
+									readonly="readonly" class="form-control" required="required"></td>
 							</tr>
 
 							<tr>
 								<td><label>IMPORT OR EXPORT: </label></td>
 								<td><select id="importOrExport" name="importOrExport"
-									required="required" onchange="updateJobNumber()"
-									class="form-control">
-									   <% if(jobMaster.getImportOrExport().equalsIgnoreCase("I"))
-									   {
-									   %>
-										<option selected="selected" value="I">Import</option>
-										<option value="E">Export</option>
+									required="required" class="form-control">
 										<%
-									   }
-									   else
-									   {
+											if (jobMaster.getImportOrExport().equalsIgnoreCase("I")) {
+										%>
+										<option selected="selected" value="I">Import</option>
+										<%
+											} else {
 										%>
 										<option value="E" selected="selected">Export</option>
-										<option value="I">Import</option>
 										<%
-									   }
+											}
 										%>
-										
+
 								</select></td>
 								<td><label>DISPATCHED FROM: </label></td>
 								<td><input type="text" name="dispatchedFrom"
-									class="form-control" required="required" value=<%=jobMaster.getDispatchFrom() %>></td>
+									class="form-control" required="required"
+									value=<%=jobMaster.getDispatchFrom()%>></td>
 								<td><label>DISPATCHED TO: </label></td>
 								<td><input type="text" name="dispatchedTo"
-									class="form-control" required="required" value=<%=jobMaster.getDispatchTo() %>></td>
+									class="form-control" required="required"
+									value=<%=jobMaster.getDispatchTo()%>></td>
 							</tr>
 
 
 							<tr>
 								<td><label>PORT NAME: </label></td>
 								<td><input type="text" name="portName" class="form-control"
-									required="required" value=value=<%=jobMaster.getPort() %>></td>
+									required="required" value=<%=jobMaster.getPort()%>></td>
 								<td><label>SHIP NAME: </label></td>
 								<td><input type="text" name="shipName" class="form-control"
-									required="required" value=<%=jobMaster.getShipName() %>></td>
+									required="required" value=<%=jobMaster.getShipName()%>></td>
 								<td><label>CITY NAME: </label></td>
 								<td><input type="text" name="cityName" class="form-control"
-									required="required" value=<%=jobMaster.getCity() %>></td>
+									required="required" value=<%=jobMaster.getCity()%>></td>
 							</tr>
 
 							<tr>
 								<td><label>BE NO: </label></td>
 								<td><input type="text" name="beNo" class="form-control"
-									required="required" value=<%=jobMaster.getBeNo() %>></td>
+									required="required" value=<%=jobMaster.getBeNo()%>></td>
 								<td><label>REF NO: </label></td>
 								<td><input type="text" name="refNo" class="form-control"
-									required="required" value=<%=jobMaster.getAccountCode() %>></td>
+									required="required" value=<%=jobMaster.getAccountCode()%>></td>
 								<td><label>PARTY REF NO: </label></td>
 								<td><input type="text" name="partyRefNo"
-									class="form-control" required="required" value=<%=jobMaster.getPartyRefNo() %>></td>
+									class="form-control" required="required"
+									value=<%=jobMaster.getPartyRefNo()%>></td>
 							</tr>
 
 							<tr>
@@ -132,20 +128,29 @@
 									class="form-control"></td>
 								<td><label>COMMODITY: </label></td>
 								<td><input type="text" name="commodity"
-									class="form-control" required="required" value=<%=jobMaster.getCommodity() %>></td>
+									class="form-control" required="required"
+									value=<%=jobMaster.getCommodity()%>></td>
 								<td><label>COMMODITY QUANTITY: </label></td>
 								<td><input type="text" name="commodityQuantity"
-									class="form-control" required="required" value=<%=jobMaster.getQuantity() %>></td>
+									class="form-control" required="required"
+									value=<%=jobMaster.getQuantity()%>></td>
 							</tr>
 
 							<tr>
 								<td><label>UNIT: </label></td>
 								<td><select name="unitId" required="required"
 									class="form-control">
-										<option value=<%=jobMaster.getUnitId() %> selected="selected"></option>
 										<%
 											List<UnitMaster> unitList = (List<UnitMaster>) request.getAttribute("unitList");
 											for (UnitMaster unit : unitList) {
+												if (unit.getUnitId() == jobMaster.getUnitId()) {
+										%>
+										<option value="<%=unit.getUnitId()%>" selected="selected">
+											<%=unit.getUnitName()%>
+										</option>
+										<%
+											continue;
+												}
 										%>
 										<option value="<%=unit.getUnitId()%>">
 											<%=unit.getUnitName()%>
@@ -156,10 +161,11 @@
 								</select></td>
 								<td><label>ADVANCE AMOUNT: </label></td>
 								<td><input type="text" name="advanceAmount"
-									class="form-control" required="required" value=<%=jobMaster.getAdvanceAmount() %>></td>
+									class="form-control" required="required"
+									value=<%=jobMaster.getAdvanceAmount()%>></td>
 								<td><label>TURNKEY: </label></td>
 								<td><input type="text" name="turnKey" class="form-control"
-									required="required" value=<%=jobMaster.getTurnKey() %>></td>
+									required="required" value=<%=jobMaster.getTurnKey()%>></td>
 							</tr>
 
 							<tr>
@@ -172,7 +178,7 @@
 								<td colspan="2"><textarea name="narration"
 										class="form-control" rows="5"
 										placeholder="enter your narration in detail"
-										required="required"></textarea></td>
+										required="required"><%=jobMaster.getNarration()%></textarea></td>
 							</tr>
 							<tr>
 								<td colspan="6"><input type="submit" value="SAVE"

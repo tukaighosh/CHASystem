@@ -166,4 +166,5 @@ public class JobMaster {
 				+ userId + ", jobCompleted=" + jobCompleted + ", advanceAmount=" + advanceAmount + ", narration="
 				+ narration + ", turnKey=" + turnKey + ", yearCode=" + yearCode + ", accountCode=" + accountCode + "]";
 	}
+	
 }

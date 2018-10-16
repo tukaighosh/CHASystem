@@ -99,7 +99,7 @@ public class JobMasterRepository {
 			jobMaster.setImportOrExport(rs.getString(2));
 			jobMaster.setBranchCode(rs.getInt(3));
 			jobMaster.setShipName(rs.getString(4));
-			jobMaster.setDispatchTo(rs.getString(5));
+			jobMaster.setDispatchFrom(rs.getString(5));
 			jobMaster.setDispatchTo(rs.getString(6));
 			jobMaster.setPort(rs.getString(7));
 			jobMaster.setBeNo(rs.getString(8));

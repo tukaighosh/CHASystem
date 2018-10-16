@@ -158,4 +158,5 @@ public class JobMasterEntryPageModel {
 				+ advanceAmount + ", turnKey=" + turnKey + ", jobOrderNumber=" + jobOrderNumber + ", branchCode="
 				+ branchCode + ", narration=" + narration + "]";
 	}
+	
 }

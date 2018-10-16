@@ -231,7 +231,6 @@ public class CHASystemController {
 		jobMaster.setJobNumber(jobMasterEntrymodel.getJobNumber());
 		jobMaster.setJobCreationDate(CommonUtils.getCurrentDateInSql());
 		jobMaster.setBeNo(jobMasterEntrymodel.getBeNo());
-		jobMaster.setBranchCode((int) (session.getAttribute("userId")));
 		jobMaster.setCity(jobMasterEntrymodel.getCityName());
 		jobMaster.setCommodity(jobMasterEntrymodel.getCommodity());
 		jobMaster.setDispatchFrom(jobMasterEntrymodel.getDispatchedFrom());
