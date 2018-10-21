@@ -7,13 +7,13 @@ import java.util.TreeMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.krishna.chasystem.web.dto.YearEntryMaster;
-import com.krishna.chasystem.web.repository.YearRepository;
+import com.krishna.chasystem.web.repository.YearMasterRepository;
 
 @Service
 public class YearMasterService {
 
 	@Autowired
-	YearRepository yearRepository;
+	YearMasterRepository yearRepository;
 	
 	public Map<Integer, String> getyearCodeAndDurationMap() throws ClassNotFoundException, SQLException
 	{

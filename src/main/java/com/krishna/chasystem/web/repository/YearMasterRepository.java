@@ -13,8 +13,8 @@ import org.springframework.stereotype.Repository;
 import com.krishna.chasystem.web.dto.YearEntryMaster;
 
 @Repository
-public class YearRepository {
-	Logger logger = Logger.getLogger(YearRepository.class);
+public class YearMasterRepository {
+	Logger logger = Logger.getLogger(YearMasterRepository.class);
 	Connection con;
 
 	public List<YearEntryMaster> getAllYears() throws ClassNotFoundException, SQLException {
