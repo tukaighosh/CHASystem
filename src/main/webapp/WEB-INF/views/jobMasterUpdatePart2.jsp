@@ -169,13 +169,10 @@
 							</tr>
 
 							<tr>
-								<td><label>JOB ORDER NO: </label></td>
-								<td><input type="text" name="jobOrderNumber"
-									class="form-control"></td>
 								<td><label>PLACE OF SERVICE: </label></td>
 								<td><input type="text" name="placeOfService"
 									class="form-control"></td>
-								<td colspan="2"><textarea name="narration"
+								<td colspan="4"><textarea name="narration"
 										class="form-control" rows="5"
 										placeholder="enter your narration in detail"
 										required="required"><%=jobMaster.getNarration()%></textarea></td>

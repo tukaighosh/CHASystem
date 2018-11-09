@@ -129,11 +129,9 @@
 							</tr>
 
 							<tr>
-								<td><label>JOB ORDER NO: </label></td>
-								<td><input type="text" name="jobOrderNumber" class="form-control" required="required"></td>
 								<td><label>PLACE OF SERVICE: </label></td>
 								<td><input type="text" name="placeOfService" class="form-control" required="required"></td>
-								<td colspan="2">
+								<td colspan="4">
 								<textarea name="narration" class="form-control" rows="5" placeholder="enter your narration in detail" required="required"></textarea>
 								</td>
 							</tr>
@@ -142,100 +140,7 @@
 							<input type="submit" value="SAVE" class="btn btn-primary btn-block">
 							</td>
 							</tr>
-
-
 						</table>
-
-
-
-						<%-- <div class="form-group row">
-							<label class="col col-lg-3">PARTY NAME: </label> <select
-								name="partyName" required="required" class="col col-lg-3">
-								<option value="">Select Party Name</option>
-								<%
-									Map<Integer, String> debtorsMapFromMasterTable = (Map<Integer, String>) request
-											.getAttribute("debtorsMapFromMasterTable");
-									for (Entry entry : debtorsMapFromMasterTable.entrySet()) {
-								%>
-								<option value="<%=entry.getKey()%>">
-									<%=entry.getValue()%>
-								</option>
-								<%
-									}
-								%>
-							</select> <label class="col col-lg-3">DATE: </label> <input type="text"
-								name="date" readonly="readonly" class="col col-lg-3"
-								required="required"
-								value="<%=(String) request.getAttribute("serverTime")%>">
-							<input type="hidden"
-								value="<%=(String) request.getAttribute("branch")%>"
-								name="branch">
-						</div> --%>
-
-
-						<!-- <div class="form-group row">
-							<label class="col col-lg-2">IMPORT OR EXPORT: </label> <select
-								name="importOrExport" required="required" class="col col-lg-2">
-								<option value="">Select Import Or Export</option>
-								<option>Import</option>
-								<option>Export</option>
-							</select> <label class="col col-lg-2">DISPATCHED FROM: </label> <input
-								type="text" name="dispatchedFrom" class="col col-lg-2">
-							<label class="col col-lg-2">DISPATCHED TO: </label> <input
-								type="text" name="dispatchedTo" class="col col-lg-2">
-						</div>
-
-						<div class="form-group row">
-							<label class="col col-lg-2">PORT NAME: </label> <input
-								type="text" name="portName" class="col col-lg-2"> <label
-								class="col col-lg-2">SHIP NAME: </label> <input type="text"
-								name="shipName" class="col col-lg-2"> <label
-								class="col col-lg-2">CITY NAME: </label> <input type="text"
-								name="cityName" class="col col-lg-2">
-						</div>
-
-						<div class="form-group row">
-							<label class="col col-lg-2">BE NO: </label> <input type="text"
-								name="beNo" class="col col-lg-2"> <label
-								class="col col-lg-2">REF NO: </label> <input type="text"
-								name="refNo" class="col col-lg-2"> <label
-								class="col col-lg-2">PARTY REF. NO: </label> <input type="text"
-								name="partyRefNo" class="col col-lg-2">
-						</div>
-
-						<div class="form-group row">
-							<label class="col col-lg-2">CREDIT DAYS: </label> <input
-								type="text" name="creditDays" class="col col-lg-2"> <label
-								class="col col-lg-2">COMMODITY: </label> <input type="text"
-								name="commodity" class="col col-lg-2"> <label
-								class="col col-lg-2">COMMODITY COUNT: </label> <input
-								type="text" name="commodityCount" class="col col-lg-2">
-						</div>
-
-						<div class="form-group row">
-							<label class="col col-lg-2">UNIT: </label> <input type="text"
-								name="unit" class="col col-lg-2"> <label
-								class="col col-lg-2">ADVANCE AMOUNT: </label> <input type="text"
-								name="advanceAmount" class="col col-lg-2"> <label
-								class="col col-lg-2">TURNKEY: </label> <input type="text"
-								name="turnKey" class="col col-lg-2">
-						</div>
-
-						<div class="form-group row">
-							<label class="col col-lg-2">JOB ORDER NO: </label> <input
-								type="text" name="jobOrderNumber" class="col col-lg-2">
-							<label class="col col-lg-2">PLACE OF SERVICE: </label> <input
-								type="text" name="placeOfService" class="col col-lg-2">
-						</div>
-
-
-
-						<div class="form-group row">
-							<div class="col align-self-center">
-								<input type="submit" value="SAVE"
-									class="form-control btn btn-primary">
-							</div>
-						</div> -->
 
 					</form>
 

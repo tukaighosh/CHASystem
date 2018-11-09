@@ -20,7 +20,9 @@
 			database.
 		</div>
 		<%
-			} else {
+			} 
+			else 
+			{
 		%>
 		<div class="alert alert-danger">
 			<strong>Sorry!</strong> Couldn't add job Master Entry. Please connect

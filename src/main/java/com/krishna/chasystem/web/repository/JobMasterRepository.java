@@ -27,7 +27,7 @@ public class JobMasterRepository {
 		if (con == null) {
 			con = JdbcConnection.getConnection();
 		}
-		String sql = "insert into job_master values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "insert into job_master values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 		PreparedStatement preparedStatement = con.prepareStatement(sql);
 		preparedStatement.setString(1, jobMaster.getJobNumber());
@@ -51,6 +51,8 @@ public class JobMasterRepository {
 		preparedStatement.setDouble(19, jobMaster.getAdvanceAmount());
 		preparedStatement.setInt(20, jobMaster.getYearCode());
 		preparedStatement.setString(21, jobMaster.getAccountCode());
+		preparedStatement.setString(22, jobMaster.getPlaceOfService());
+		preparedStatement.setInt(23, jobMaster.getCreditDays());
 
 		recordsAdded = preparedStatement.executeUpdate();// data is inserted after this line is executed
 		logger.info(recordsAdded + " job_master(s) added");
@@ -72,7 +74,8 @@ public class JobMasterRepository {
 				+ jobMaster.getUserId() + ",JOB_COMPLETED='" + jobMaster.getJobCompleted() + "',NARRATION='"
 				+ jobMaster.getNarration() + "',TURNKEY='" + jobMaster.getTurnKey() + "',ADVANCE_AMOUNT="
 				+ jobMaster.getAdvanceAmount() + ",YEAR_CODE=" + jobMaster.getYearCode() + ",ACCOUNT_CODE='"
-				+ jobMaster.getAccountCode() + "' where JOB_NUM='"+jobMaster.getJobNumber()+"'";
+				+ jobMaster.getAccountCode() + ",PLACE_OF_SERVICE='" + jobMaster.getPlaceOfService() + "', CREDIT_DAYS="
+				+ jobMaster.getCreditDays() + " where JOB_NUM='" + jobMaster.getJobNumber() + "'";
 
 		Statement statement = con.createStatement();
 
@@ -81,19 +84,17 @@ public class JobMasterRepository {
 
 		return recordsAdded;
 	}
-	
-	public JobMaster getJobMasterById(String jobNumber) throws ClassNotFoundException, SQLException
-	{
+
+	public JobMaster getJobMasterById(String jobNumber) throws ClassNotFoundException, SQLException {
 		JobMaster jobMaster = null;
 		if (con == null) {
 			con = JdbcConnection.getConnection();
 		}
-		String sql = "select * from job_master where JOB_NUM='"+jobNumber+"'";
+		String sql = "select * from job_master where JOB_NUM='" + jobNumber + "'";
 
 		Statement stmt = con.createStatement();
 		ResultSet rs = stmt.executeQuery(sql);
-		while(rs.next())
-		{
+		while (rs.next()) {
 			jobMaster = new JobMaster();
 			jobMaster.setJobNumber(rs.getString(1));
 			jobMaster.setImportOrExport(rs.getString(2));
@@ -116,11 +117,15 @@ public class JobMasterRepository {
 			jobMaster.setAdvanceAmount(rs.getDouble(19));
 			jobMaster.setYearCode(rs.getInt(20));
 			jobMaster.setAccountCode(rs.getString(21));
+			jobMaster.setPlaceOfService(rs.getString(22));
+			jobMaster.setCreditDays(rs.getInt(23));
 		}
 		return jobMaster;
 	}
-	
-	/** krishna
+
+	/**
+	 * krishna
+	 * 
 	 * @param JobNumber
 	 * @return
 	 * @throws ClassNotFoundException
@@ -131,8 +136,8 @@ public class JobMasterRepository {
 		if (con == null) {
 			con = JdbcConnection.getConnection();
 		}
-		
-		String sql = "delete from job_master where JOB_NUM="+jobnumber;
+
+		String sql = "delete from job_master where JOB_NUM=" + jobnumber;
 
 		Statement statement = con.createStatement();
 
@@ -141,9 +146,7 @@ public class JobMasterRepository {
 
 		return recordsUpdated;
 	}
-	
 
-	
 	// static synchronized method
 	public synchronized long getNextJobNumberFromSequence() throws ClassNotFoundException, SQLException {
 

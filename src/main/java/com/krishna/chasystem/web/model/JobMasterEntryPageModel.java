@@ -2,6 +2,10 @@ package com.krishna.chasystem.web.model;
 
 import org.springframework.stereotype.Component;
 
+/**
+ * @author Admin
+ *
+ */
 @Component
 public class JobMasterEntryPageModel {
 
@@ -22,9 +26,9 @@ public class JobMasterEntryPageModel {
 	private String unitId;
 	private String advanceAmount;
 	private String turnKey;
-	private String jobOrderNumber;
 	private String branchCode;
 	private String narration;
+	private String placeOfService;
 	
 	
 	public String getJobNumber() {
@@ -130,12 +134,6 @@ public class JobMasterEntryPageModel {
 	public void setTurnKey(String turnKey) {
 		this.turnKey = turnKey;
 	}
-	public String getJobOrderNumber() {
-		return jobOrderNumber;
-	}
-	public void setJobOrderNumber(String jobOrderNumber) {
-		this.jobOrderNumber = jobOrderNumber;
-	}
 	public String getBranchCode() {
 		return branchCode;
 	}
@@ -148,6 +146,13 @@ public class JobMasterEntryPageModel {
 	public void setNarration(String narration) {
 		this.narration = narration;
 	}
+	
+	public String getPlaceOfService() {
+		return placeOfService;
+	}
+	public void setPlaceOfService(String placeOfService) {
+		this.placeOfService = placeOfService;
+	}
 	@Override
 	public String toString() {
 		return "JobMasterEntryPageModel [jobNumber=" + jobNumber + ", accountCode=" + accountCode + ", importOrExport="
@@ -155,8 +160,7 @@ public class JobMasterEntryPageModel {
 				+ ", portName=" + portName + ", shipName=" + shipName + ", cityName=" + cityName + ", beNo=" + beNo
 				+ ", refNo=" + refNo + ", partyRefNo=" + partyRefNo + ", creditDays=" + creditDays + ", commodity="
 				+ commodity + ", commodityQuantity=" + commodityQuantity + ", unitId=" + unitId + ", advanceAmount="
-				+ advanceAmount + ", turnKey=" + turnKey + ", jobOrderNumber=" + jobOrderNumber + ", branchCode="
-				+ branchCode + ", narration=" + narration + "]";
+				+ advanceAmount + ", turnKey=" + turnKey + ", branchCode=" + branchCode + ", narration=" + narration
+				+ ", placeOfService=" + placeOfService + "]";
 	}
-	
 }

@@ -26,7 +26,8 @@ public class JobMaster {
 	private String turnKey;
 	private int yearCode;
 	private String accountCode;
-	
+	private String placeOfService;
+	private int creditDays;
 	
 	
 	
@@ -157,6 +158,18 @@ public class JobMaster {
 	public void setAccountCode(String accountCode) {
 		this.accountCode = accountCode;
 	}
+	public String getPlaceOfService() {
+		return placeOfService;
+	}
+	public void setPlaceOfService(String placeOfService) {
+		this.placeOfService = placeOfService;
+	}
+	public int getCreditDays() {
+		return creditDays;
+	}
+	public void setCreditDays(int creditDays) {
+		this.creditDays = creditDays;
+	}
 	@Override
 	public String toString() {
 		return "JobMaster [jobNumber=" + jobNumber + ", importOrExport=" + importOrExport + ", branchCode=" + branchCode
@@ -164,7 +177,7 @@ public class JobMaster {
 				+ port + ", beNo=" + beNo + ", city=" + city + ", partyRefNo=" + partyRefNo + ", commodity=" + commodity
 				+ ", unitId=" + unitId + ", quantity=" + quantity + ", jobCreationDate=" + jobCreationDate + ", userId="
 				+ userId + ", jobCompleted=" + jobCompleted + ", advanceAmount=" + advanceAmount + ", narration="
-				+ narration + ", turnKey=" + turnKey + ", yearCode=" + yearCode + ", accountCode=" + accountCode + "]";
+				+ narration + ", turnKey=" + turnKey + ", yearCode=" + yearCode + ", accountCode=" + accountCode
+				+ ", placeOfService=" + placeOfService + ", creditDays=" + creditDays + "]";
 	}
-	
 }
